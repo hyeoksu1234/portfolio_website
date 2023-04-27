@@ -20,7 +20,7 @@ html {
   grid-template-columns: repeat(6, 1fr);
   grid-auto-rows: minmax(100px, auto);
   height: 100%;
-  gap: 1rem;
+  gap: 0.5rem;
   padding: 1rem;
 }
 
