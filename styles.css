@@ -68,19 +68,6 @@ h2 {
   grid-row: span 3;
 }
 
-#mouse-cursor {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: #000;
-  border: 4px solid green;
-  border-radius: 999px;
-  mix-blend-mode: difference;
-  pointer-events: none;
-  z-index: 999;
-  transition: top 0.025s ease, left 0.025s ease, transform 0.25s ease;
-}
-
 .wrapper {
   font-family: "Montserrat", sans-serif;
   justify-content: center;
@@ -109,4 +96,16 @@ ul li a {
 }
 ul li a:hover {
   letter-spacing: 15px;
+}
+/* 반응형 스타일 작성 (미디어 쿼리 사용) */
+@media screen and (max-width: 1024px) {
+  /* 1024px 미만일 때 적용할 스타일 작성 */
+}
+
+@media screen and (max-width: 768px) {
+  /* 768px 미만일 때 적용할 스타일 작성 */
+}
+
+@media screen and (max-width: 480px) {
+  /* 480px 미만일 때 적용할 스타일 작성 */
 }
