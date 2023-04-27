@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:900");
 body {
   background: #000;
-  /* font-family: sans-serif; */
+  font-family: sans-serif;
   overflow: hidden;
 }
 body * {
@@ -105,10 +105,38 @@ ul li a:hover {
 
 /* Mobile devices */
 @media screen and (max-width: 1000px) {
-  #home,
-  #my_photo,
+  ul li {
+    list-style: none;
+    font-size: 40px;
+    /* margin-bottom: 25px; */
+    display: table;
+  }
+  ul li a {
+    color: green;
+    text-decoration: none;
+    letter-spacing: 3px;
+    text-transform: lowercase;
+    transition: 0.5s ease;
+  }
+  ul li a:hover {
+    letter-spacing: 10px;
+  }
+  #home {
+    grid-column: span 3;
+    grid-row: span 2;
+    /* Other mobile-specific styles */
+  }
+  #my_photo {
+    grid-column: span 3;
+    grid-row: span 2;
+    /* Other mobile-specific styles */
+  }
   #about,
-  #skills,
+  #skills {
+    grid-column: span 3;
+    grid-row: span 2;
+    /* Other mobile-specific styles */
+  }
   #projects,
   #contact {
     grid-column: span 6;
