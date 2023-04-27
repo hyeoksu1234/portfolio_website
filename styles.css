@@ -30,6 +30,10 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  gap: 20px;
 }
 
 h1,
@@ -97,15 +101,17 @@ ul li a {
 ul li a:hover {
   letter-spacing: 15px;
 }
-/* 반응형 스타일 작성 (미디어 쿼리 사용) */
-@media screen and (max-width: 1024px) {
-  /* 1024px 미만일 때 적용할 스타일 작성 */
-}
 
-@media screen and (max-width: 768px) {
-  /* 768px 미만일 때 적용할 스타일 작성 */
-}
-
-@media screen and (max-width: 480px) {
-  /* 480px 미만일 때 적용할 스타일 작성 */
+/* Mobile devices */
+@media screen and (max-width: 767px) {
+  #home,
+  #my_photo,
+  #about,
+  #skills,
+  #projects,
+  #contact {
+    grid-column: span 6;
+    grid-row: span 2;
+    /* Other mobile-specific styles */
+  }
 }
