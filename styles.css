@@ -12,6 +12,7 @@ html {
   margin: 0;
   background-color: #000;
   color: #fff;
+  overflow-y: scroll;
 }
 
 .container {
@@ -103,7 +104,7 @@ ul li a:hover {
 }
 
 /* Mobile devices */
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1000px) {
   #home,
   #my_photo,
   #about,
