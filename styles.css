@@ -17,16 +17,16 @@ html {
 
 .container {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(8, 1fr);
   grid-auto-rows: minmax(100px, auto);
   height: 100%;
-  gap: 0.5rem;
-  padding: 1rem;
+  gap: 0.7rem;
+  padding: 0.5rem;
 }
 
 section {
   background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
+  border-radius: 30px;
   padding: 1rem;
   display: flex;
   justify-content: center;
@@ -44,12 +44,12 @@ h2 {
 
 /* Custom sizes for different cards */
 #home {
-  grid-column: span 3;
+  grid-column: span 4;
   grid-row: span 2;
 }
 
 #my_photo {
-  grid-column: span 1;
+  grid-column: span 2;
   grid-row: span 2;
 }
 
@@ -64,12 +64,12 @@ h2 {
 }
 
 #projects {
-  grid-column: span 3;
+  grid-column: span 4;
   grid-row: span 3;
 }
 
 #contact {
-  grid-column: span 3;
+  grid-column: span 4;
   grid-row: span 3;
 }
 
@@ -119,27 +119,27 @@ ul li a:hover {
     transition: 0.5s ease;
   }
   ul li a:hover {
-    letter-spacing: 5px;
+    letter-spacing: 0px;
   }
   #home {
-    grid-column: span 3;
+    grid-column: span 4;
     grid-row: span 2;
     /* Other mobile-specific styles */
   }
   #my_photo {
-    grid-column: span 3;
+    grid-column: span 4;
     grid-row: span 2;
     /* Other mobile-specific styles */
   }
   #about,
   #skills {
-    grid-column: span 3;
+    grid-column: span 4;
     grid-row: span 2;
     /* Other mobile-specific styles */
   }
   #projects,
   #contact {
-    grid-column: span 6;
+    grid-column: span 8;
     grid-row: span 2;
     /* Other mobile-specific styles */
   }
