@@ -51,6 +51,21 @@ h2 {
 #my_photo {
   grid-column: span 2;
   grid-row: span 2;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* 이미지가 섹션 밖으로 넘치지 않게 함 */
+}
+#my_photo:hover .photo {
+  transform: scale(1.1); /* 마우스 호버시 이미지를 1.1배로 확대 */
+}
+.photo {
+  border-radius: 30px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 이미지가 꽉 차게 조절되도록 함 */
+  object-position: center; /* 이미지가 중앙에 오도록 함 */
+  transition: transform 0.3s;
 }
 
 #about {
@@ -93,7 +108,7 @@ ul li {
   display: table;
 }
 ul li a {
-  color: green;
+  color: orange;
   text-decoration: none;
   letter-spacing: 5px;
   text-transform: lowercase;
@@ -112,7 +127,7 @@ ul li a:hover {
     display: table;
   }
   ul li a {
-    color: green;
+    color: orange;
     text-decoration: none;
     letter-spacing: 3px;
     text-transform: lowercase;
