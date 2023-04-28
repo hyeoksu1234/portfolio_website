@@ -120,8 +120,9 @@ li.cursor-hover:active {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   transition: right 0.3s;
+  padding-top: 100px;
 }
 
 .menu.open {
@@ -204,14 +205,14 @@ ul li {
   /* margin-bottom: 25px; */
   display: table;
 }
-ul li a {
+ul li a.clickable {
   color: orange;
   text-decoration: none;
   letter-spacing: 5px;
   text-transform: lowercase;
   transition: 0.5s ease;
 }
-ul li a:hover {
+ul li a.clickable:hover {
   letter-spacing: 15px;
 }
 
@@ -223,7 +224,7 @@ ul li a:hover {
     display: table;
     margin-bottom: 13px;
   }
-  ul li a {
+  ul li a.clickable {
     color: orange;
     text-decoration: none;
     letter-spacing: 5px;
@@ -232,7 +233,7 @@ ul li a:hover {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-touch-callout: none;
   }
-  ul li a:hover {
+  ul li a.clickable:hover {
     letter-spacing: 0px;
   }
   #home {
