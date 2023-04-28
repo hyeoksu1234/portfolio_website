@@ -61,7 +61,7 @@ h2 {
   overflow: hidden; /* 이미지가 섹션 밖으로 넘치지 않게 함 */
 }
 #my_photo:hover .photo {
-  transform: scale(1.17); /* 마우스 호버시 이미지를 1.1배로 확대 */
+  transform: scale(1.2); /* 마우스 호버시 이미지를 1.1배로 확대 */
 }
 .photo {
   object-fit: cover;
@@ -128,13 +128,14 @@ ul li a:hover {
 @media screen and (max-width: 800px) {
   ul li {
     list-style: none;
-    font-size: 40px;
+    font-size: 35px;
     display: table;
+    margin-bottom: 13px;
   }
   ul li a {
     color: orange;
     text-decoration: none;
-    letter-spacing: 3px;
+    letter-spacing: 5px;
     text-transform: lowercase;
     transition: 0.5s ease;
   }
