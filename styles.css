@@ -47,6 +47,9 @@ h2 {
   grid-column: span 4;
   grid-row: span 2;
 }
+li.cursor-hover:active {
+  color: orange;
+}
 #hero {
   grid-column: span 4;
   height: 100px;
