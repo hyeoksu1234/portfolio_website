@@ -39,3 +39,33 @@ document.addEventListener("DOMContentLoaded", () => {
     menu.classList.toggle("open");
   });
 });
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const skillsData = [
+//     { name: "Photoshop", level: 100 },
+//     { name: "Illustrator", level: 100 },
+//     { name: "Premiere Pro", level: 100 },
+//     { name: "After Effects", level: 80 },
+//     { name: "C4D", level: 80 },
+//     { name: "3D Max", level: 70 },
+//     { name: "Chat GPT", level: 80 },
+//   ];
+
+//   const skillsChart = document.querySelector(".skills-chart");
+
+//   skillsData.forEach((skill) => {
+//     const skillItem = document.createElement("div");
+//     skillItem.classList.add("skill-item");
+
+//     const skillName = document.createElement("div");
+//     skillName.classList.add("skill-name");
+//     skillName.textContent = skill.name;
+
+//     const skillBar = document.createElement("div");
+//     skillBar.classList.add("skill-bar");
+
+//     const skillBarFill = document.createElement("div");
+//     skillBarFill.classList.add("skill-bar-fill", "orange");
+//     skillBarFill.style.width = `${skill.level}%`;
+//   });
+// });
