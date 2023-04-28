@@ -51,8 +51,96 @@ li.cursor-hover:active {
   color: orange;
 }
 #hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem; /* 좌우 패딩 추가 */
   grid-column: span 4;
-  height: 100px;
+  height: 100%;
+}
+.hero-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.studio-name {
+  font-size: 2em;
+  font-weight: bold;
+  /* align-self: flex-start; 가로 정렬 */
+}
+.studio-name .su {
+  color: rgba(255, 255, 255, 0.4); /* 색상 밝기를 조정 */
+}
+
+.hamburger {
+  z-index: 100;
+  cursor: pointer;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 30px;
+  width: 40px;
+  background: transparent;
+  border: none;
+  outline: none;
+  position: absolute;
+  align-items: center;
+}
+
+.hamburger span {
+  display: block;
+  height: 4px;
+  width: 100%;
+  background-color: white;
+  transition: all 0.3s;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: translateY(12px) rotate(135deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-12px) rotate(-135deg);
+}
+
+.menu {
+  z-index: 99;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 50%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: right 0.3s;
+}
+
+.menu.open {
+  right: 0;
+}
+
+.menu ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu ul li {
+  margin-bottom: 20px;
+}
+
+.menu ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 24px;
 }
 
 #my_photo {
@@ -157,6 +245,14 @@ ul li a:hover {
     height: 100px;
     /* Other mobile-specific styles */
   }
+
+  .studio-name {
+    margin-top: 3px;
+    font-size: 1.3em;
+    font-weight: bold;
+    /* align-self: flex-start; 가로 정렬 */
+  }
+
   #my_photo {
     grid-column: span 4;
     grid-row: span 2;
