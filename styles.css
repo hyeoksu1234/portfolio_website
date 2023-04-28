@@ -88,6 +88,9 @@ li.cursor-hover:active {
   position: absolute;
   align-items: center;
 }
+.hamburger.open {
+  position: fixed; /* 수정: .open 클래스가 적용되면 position 값을 fixed로 변경 */
+}
 
 .hamburger span {
   display: block;
