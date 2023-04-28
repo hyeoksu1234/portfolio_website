@@ -47,35 +47,41 @@ h2 {
   grid-column: span 4;
   grid-row: span 2;
 }
+#hero {
+  grid-column: span 4;
+  height: 100px;
+}
 
 #my_photo {
   grid-column: span 2;
-  grid-row: span 2;
+  height: 420px;
   /* position: relative; */
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   overflow: hidden; /* 이미지가 섹션 밖으로 넘치지 않게 함 */
 }
 #my_photo:hover .photo {
-  transform: scale(1.1); /* 마우스 호버시 이미지를 1.1배로 확대 */
+  transform: scale(1.17); /* 마우스 호버시 이미지를 1.1배로 확대 */
 }
 .photo {
+  object-fit: cover;
+  top: 0;
+  left: 0;
   border-radius: 30px;
-  width: 115%;
-  height: 110%;
-  object-fit: cover; /* 이미지가 꽉 차게 조절되도록 함 */
-  object-position: center; /* 이미지가 중앙에 오도록 함 */
+  width: 100%;
+  height: 100%;
+  object-position: center;
   transition: transform 0.3s;
 }
 
 #about {
   grid-column: span 2;
-  grid-row: span 1;
+  grid-row: span 2;
 }
 
 #skills {
   grid-column: span 2;
-  grid-row: span 1;
+  grid-row: span 3;
 }
 
 #projects {
@@ -84,8 +90,8 @@ h2 {
 }
 
 #contact {
-  grid-column: span 4;
-  grid-row: span 3;
+  grid-column: span 2;
+  grid-row: span 2;
 }
 
 .wrapper {
@@ -93,7 +99,7 @@ h2 {
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 100vw;
+  width: 100%;
 }
 
 ul {
@@ -119,7 +125,7 @@ ul li a:hover {
 }
 
 /* Mobile devices */
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 800px) {
   ul li {
     list-style: none;
     font-size: 40px;
@@ -138,6 +144,11 @@ ul li a:hover {
   #home {
     grid-column: span 4;
     grid-row: span 2;
+  }
+  /* Other mobile-specific styles */
+  #hero {
+    grid-column: span 4;
+    height: 100px;
     /* Other mobile-specific styles */
   }
   #my_photo {
@@ -145,7 +156,10 @@ ul li a:hover {
     grid-row: span 2;
     /* Other mobile-specific styles */
   }
-  #about,
+  #about {
+    grid-column: span 4;
+    grid-row: span 3;
+  }
   #skills {
     grid-column: span 4;
     grid-row: span 2;
