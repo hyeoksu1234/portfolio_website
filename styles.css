@@ -124,12 +124,27 @@ li.cursor-hover:active {
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
-  transition: right 0.3s;
+  transition: right 0.5s;
   padding-top: 100px;
 }
 
 .menu.open {
   right: 0;
+}
+
+.menu.open ~ .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: background-color 0.5s ease;
+  z-index: 98; /* 메뉴보다 낮은 z-index 값을 설정하여 메뉴 위에 위치 */
+}
+
+.menu.open ~ .overlay.active {
+  background-color: rgba(0, 0, 0, 0.5); /* 어두운 배경 색상 */
 }
 
 .menu ul {
@@ -255,6 +270,26 @@ ul li a.clickable:hover {
     font-size: 1.3em;
     font-weight: bold;
     /* align-self: flex-start; 가로 정렬 */
+  }
+  .hamburger {
+    height: 24px;
+    width: 32px;
+  }
+  .hamburger.open {
+    height: 24px;
+    width: 32px;
+  }
+
+  .hamburger.open span:nth-child(1) {
+    transform: translateY(9px) rotate(135deg);
+  }
+
+  .hamburger.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.open span:nth-child(3) {
+    transform: translateY(-9px) rotate(-135deg);
   }
 
   #my_photo {
