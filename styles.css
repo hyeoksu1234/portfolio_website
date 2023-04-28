@@ -81,7 +81,7 @@ li.cursor-hover:active {
   flex-direction: column;
   justify-content: space-between;
   height: 30px;
-  width: 40px;
+  width: 30px;
   background: transparent;
   border: none;
   outline: none;
@@ -95,7 +95,7 @@ li.cursor-hover:active {
 .hamburger span {
   display: block;
   height: 4px;
-  width: 100%;
+  width: 30px;
   background-color: white;
   transition: all 0.3s;
 }
