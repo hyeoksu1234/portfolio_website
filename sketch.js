@@ -39,11 +39,3 @@ document.addEventListener("DOMContentLoaded", () => {
     menu.classList.toggle("open");
   });
 });
-
-// JavaScript 코드
-var menuButton = document.querySelector(".hamburger");
-var overlay = document.querySelector(".overlay");
-
-menuButton.addEventListener("click", function () {
-  overlay.classList.toggle("active");
-});
