@@ -186,7 +186,30 @@ li.cursor-hover:active {
 
 #about {
   grid-column: span 2;
-  height: 100%;
+  grid-row: span 1;
+}
+
+.about-content {
+  /* display: flex; */
+  /* justify-content: center; */
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.name {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.occupation {
+  margin-top: 10px;
+  font-size: 1.2em;
+  color: #555;
+}
+
+.personal-info {
+  margin-top: 10px;
+  font-size: 1.2em;
 }
 
 #skills {
@@ -336,7 +359,7 @@ ul li a.clickable:hover {
   } */
 
   .hamburger.open span:nth-child(1) {
-    transform: translateY(15px) rotate(135deg);
+    transform: translateY(12px) rotate(135deg);
   }
 
   .hamburger.open span:nth-child(2) {
@@ -344,9 +367,9 @@ ul li a.clickable:hover {
   }
 
   .hamburger.open span:nth-child(3) {
-    transform: translateY(-15px) rotate(-135deg);
+    transform: translateY(-12px) rotate(-135deg);
   }
-  */ .menu {
+  .menu {
     width: 50%;
   }
 
