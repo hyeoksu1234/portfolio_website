@@ -28,7 +28,7 @@ section {
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 30px;
   padding: 1rem;
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   align-items: center;
 
@@ -186,7 +186,7 @@ li.cursor-hover:active {
 
 #about {
   grid-column: span 2;
-  grid-row: span 2;
+  height: 100%;
 }
 
 #skills {
@@ -201,7 +201,7 @@ li.cursor-hover:active {
 
 #contact {
   grid-column: span 2;
-  grid-row: span 2;
+  grid-row: span 3;
 }
 
 .wrapper {
@@ -261,7 +261,7 @@ ul li a.clickable:hover {
   /* Other mobile-specific styles */
   #hero {
     grid-column: span 4;
-    height: 100px;
+    height: 100%;
     /* Other mobile-specific styles */
   }
 
@@ -280,7 +280,7 @@ ul li a.clickable:hover {
     width: 32px;
   } */
 
-  .hamburger.open span:nth-child(1) {
+  /* .hamburger.open span:nth-child(1) {
     transform: translateY(15px) rotate(135deg);
   }
 
@@ -290,14 +290,14 @@ ul li a.clickable:hover {
 
   .hamburger.open span:nth-child(3) {
     transform: translateY(-15px) rotate(-135deg);
-  }
+  } */
   .menu {
     width: 50%;
   }
 
   #my_photo {
     grid-column: span 4;
-    grid-row: span 2;
+    height: 100%;
     /* Other mobile-specific styles */
   }
   #about {
@@ -306,7 +306,7 @@ ul li a.clickable:hover {
   }
   #skills {
     grid-column: span 4;
-    grid-row: span 2;
+    grid-row: span 3;
     /* Other mobile-specific styles */
   }
   #projects,
