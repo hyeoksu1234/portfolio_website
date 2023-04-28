@@ -271,14 +271,14 @@ ul li a.clickable:hover {
     font-weight: bold;
     /* align-self: flex-start; 가로 정렬 */
   }
-  .hamburger {
+  /* .hamburger {
     height: 24px;
     width: 32px;
   }
   .hamburger.open {
     height: 24px;
     width: 32px;
-  }
+  } */
 
   .hamburger.open span:nth-child(1) {
     transform: translateY(9px) rotate(135deg);
