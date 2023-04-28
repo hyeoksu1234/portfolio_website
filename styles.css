@@ -281,7 +281,7 @@ ul li a.clickable:hover {
     width: 32px;
   } */
 
-  /* .hamburger.open span:nth-child(1) {
+  .hamburger.open span:nth-child(1) {
     transform: translateY(15px) rotate(135deg);
   }
 
@@ -291,8 +291,8 @@ ul li a.clickable:hover {
 
   .hamburger.open span:nth-child(3) {
     transform: translateY(-15px) rotate(-135deg);
-  } */
-  .menu {
+  }
+  */ .menu {
     width: 50%;
   }
 
