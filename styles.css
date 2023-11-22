@@ -201,15 +201,22 @@ li.cursor-hover:active {
   font-weight: bold;
 }
 
+.info {
+  margin-top: 10px;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
 .occupation {
   margin-top: 10px;
-  font-size: 1.9em;
+  font-size: 1.5em;
   color: #555;
 }
 
 .personal-info {
   margin-top: 10px;
   font-size: 1.5em;
+  color: #555;
 }
 
 #skills {
