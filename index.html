@@ -9,6 +9,10 @@
     <script src="sketch.js"></script>
   </head>
   <body>
+    <div id="loadingAnimation" style="display: none">
+      <div class="percent"></div>
+    </div>
+
     <div class="container">
       <section id="home">
         <div class="wrapper">
@@ -24,7 +28,11 @@
       </section>
       <section id="hero">
         <div class="hero-content">
-          <h2 class="studio-name"><span class="su">Su</span>'studio</h2>
+          <h2 class="studio-name">
+            <a href="index.html" class="su-link"
+              ><span class="su">Su</span>'studio</a
+            >
+          </h2>
           <button class="hamburger" id="hamburger">
             <span></span>
             <span></span>
@@ -34,17 +42,16 @@
       </section>
       <nav class="menu" id="menu">
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About Me</a></li>
-          <li><a href="#">Projects</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <!-- 'Projects' 링크도 'projects.html'로 설정할 수 있습니다. -->
         </ul>
       </nav>
       <section id="my_photo">
         <img src="img/my_photo/hyeoksu.jpg" alt="Your photo" class="photo" />
       </section>
       <section id="about">
-        <div class="about-content">
+        <div class="about-content_1">
           <h3 class="name">Name: Lee Hyeoksu</h3>
           <p class="info">
             Birth: 00.01.06
@@ -86,7 +93,7 @@
             </div>
           </div>
           <div class="skill">
-            <div class="skill-label">C4D</div>
+            <div class="skill-label">Cinema 4D</div>
             <div class="skill-bar">
               <div class="skill-level skill-level-80"></div>
             </div>
@@ -106,11 +113,17 @@
         </div>
       </section>
 
-      <section id="projects">
-        <h2>Projects</h2>
+      <section id="my_photo_2" onclick="openProjectsPage()">
+        <!-- <h2>Projects</h2> -->
+        <img
+          src="img/my_photo/projects.jpg"
+          alt="projects_photo"
+          class="projects_photo"
+        />
       </section>
+
       <section id="contact">
-        <div class="about-content">
+        <div class="about-content_2">
           <h3 class="name">Contact</h3>
           <p class="personal-info">
             <!-- 00.01.06 <br /> -->
@@ -119,7 +132,7 @@
           </p>
         </div>
       </section>
-      <div class="overlay"></div>
+      <!-- <div class="overlay"></div> -->
     </div>
   </body>
 </html>
