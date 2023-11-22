@@ -180,149 +180,22 @@ li.cursor-hover:active {
 #my_photo:hover .photo {
   transform: scale(1.2); /* 마우스 호버시 이미지를 1.1배로 확대 */
 }
+h1 {
+  margin-bottom: 10px;
+}
+.project {
+  margin: 15px;
+  text-align: center;
+}
 .photo {
-  object-fit: cover;
+  /* object-fit: cover; */
   top: 0;
   left: 0;
   border-radius: 30px;
-  width: 100%;
-  height: 100%;
+  width: 60%;
+  height: auto;
   object-position: center;
   transition: transform 0.3s;
-}
-
-#about {
-  grid-column: span 2;
-  grid-row: span 1;
-}
-
-.about-content {
-  /* display: flex; */
-  /* justify-content: center; */
-  align-items: flex-start;
-  flex-direction: column;
-}
-
-.name {
-  font-size: 1.5em;
-  font-weight: bold;
-}
-
-.info {
-  margin-top: 10px;
-  font-size: 1.5em;
-  font-weight: bold;
-}
-
-.occupation {
-  margin-top: 10px;
-  font-size: 1.5em;
-  color: #555;
-}
-
-.personal-info {
-  margin-top: 10px;
-  font-size: 1.5em;
-  color: #555;
-}
-
-#skills {
-  grid-column: span 2;
-  grid-row: span 3;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  /* align-items: flex-start; */
-}
-
-.skills-graph {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: flex-start;
-  flex-wrap: wrap;
-}
-
-.skill {
-  margin-bottom: 10px;
-  width: 100%;
-}
-
-.skill-label {
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.skill-bar {
-  width: 100%;
-  height: 10px;
-  background-color: lightgray;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.skill-level {
-  height: 100%;
-}
-
-.skill-level-100 {
-  width: 100%;
-  background-color: orange;
-}
-
-.skill-level-90 {
-  width: 90%;
-  background-color: orange;
-}
-
-.skill-level-80 {
-  width: 80%;
-  background-color: orange;
-}
-
-.skill-level-70 {
-  width: 70%;
-  background-color: orange;
-}
-
-#projects {
-  grid-column: span 4;
-  grid-row: span 3;
-}
-
-#contact {
-  grid-column: span 2;
-  grid-row: span 3;
-}
-
-.wrapper {
-  font-family: "Montserrat", sans-serif;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-}
-
-.wrapper ul {
-  margin: 0;
-  padding: 0;
-  /* width: 65vw; */
-}
-.wrapper ul li {
-  list-style: none;
-  font-size: 80px;
-  /* margin-bottom: 25px; */
-  display: table;
-}
-.wrapper ul li a.clickable {
-  color: orange;
-  text-decoration: none;
-  letter-spacing: 5px;
-  text-transform: lowercase;
-  transition: 0.5s ease;
-}
-ul li a.clickable:hover {
-  letter-spacing: 15px;
 }
 
 /* Mobile devices */
