@@ -28,12 +28,12 @@ section {
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 30px;
   padding: 1rem;
-  /* display: flex; */
-  /* justify-content: center; */
+  display: flex;
+  justify-content: center;
   align-items: center;
 
   display: flex;
-  /* flex-wrap: wrap; */
+  flex-wrap: wrap;
   gap: 5px;
 }
 
@@ -43,20 +43,13 @@ h2 {
 }
 
 /* Custom sizes for different cards */
-/* #home {
-  grid-column: span 4;
-  grid-row: span 2;
-}
-li.cursor-hover:active {
-  color: orange;
-} */
 #hero {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 1rem; /* 좌우 패딩 추가 */
-  grid-column: span 8;
-  height: 130px;
+  grid-column: span 4;
+  height: 100%;
 }
 .hero-content {
   display: flex;
@@ -65,14 +58,13 @@ li.cursor-hover:active {
 }
 
 .studio-name {
-  font-size: 1em;
+  font-size: 3vw;
   font-weight: bold;
   /* align-self: flex-start; 가로 정렬 */
 }
 .studio-name .su {
   color: rgba(255, 255, 255, 0.4); /* 색상 밝기를 조정 */
 }
-
 .su-link {
   text-decoration: none; /* 링크 밑줄 제거 */
   color: inherit; /* 현재 텍스트의 색상을 그대로 사용 */
@@ -81,9 +73,10 @@ li.cursor-hover:active {
 }
 
 .hamburger {
+  position: fixed; /* 위치 고정 */
   z-index: 100;
   cursor: pointer;
-  right: 50px;
+  right: 40px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -200,6 +193,36 @@ h1 {
 
 /* Mobile devices */
 @media screen and (max-width: 800px) {
+  .wrapper {
+    display: flex;
+  }
+  .wrapper ul li {
+    display: flex;
+    text-align: center;
+    list-style: none;
+    font-size: 10vw;
+    /* display: table; */
+    margin-bottom: 10px;
+    align-items: center;
+    /* justify-content: center; */
+  }
+  .wrapper ul li a.clickable {
+    color: orange;
+    text-decoration: none;
+    letter-spacing: 5px;
+    text-transform: lowercase;
+    transition: 0.5s ease;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-touch-callout: none;
+    /* align-items: center; */
+  }
+  ul li a.clickable:hover {
+    letter-spacing: 0px;
+  }
+  #home {
+    grid-column: span 4;
+    grid-row: span 2;
+  }
   /* Other mobile-specific styles */
   #hero {
     grid-column: span 8;
@@ -209,21 +232,22 @@ h1 {
 
   .studio-name {
     margin-top: 3px;
-    font-size: 10vw;
+    font-size: 1.3em;
     font-weight: bold;
     /* align-self: flex-start; 가로 정렬 */
   }
-  /* .hamburger {
+  .hamburger {
+    margin-top: 2px;
     height: 24px;
-    width: 32px;
+    width: 20px;
   }
   .hamburger.open {
     height: 24px;
-    width: 32px;
-  } */
+    width: 20px;
+  }
 
   .hamburger.open span:nth-child(1) {
-    transform: translateY(12px) rotate(135deg);
+    transform: translateY(9px) rotate(135deg);
   }
 
   .hamburger.open span:nth-child(2) {
@@ -231,32 +255,19 @@ h1 {
   }
 
   .hamburger.open span:nth-child(3) {
-    transform: translateY(-12px) rotate(-135deg);
+    transform: translateY(-10px) rotate(-135deg);
   }
   .menu {
     width: 50%;
   }
-
-  #my_photo {
-    grid-column: span 4;
-    height: 100%;
-    /* Other mobile-specific styles */
-  }
-  #about {
-    grid-column: span 4;
-    grid-row: span 3;
-    font-size: 10px;
-  }
-  #skills {
-    grid-column: span 4;
-    grid-row: span 3;
-    /* Other mobile-specific styles */
-  }
-  #my_photo_2,
-  #contact {
-    height: 100%;
-    grid-column: span 8;
-    /* grid-row: span 2; */
-    /* Other mobile-specific styles */
+  .photo {
+    /* object-fit: cover; */
+    top: 0;
+    left: 0;
+    border-radius: 30px;
+    width: 100%;
+    height: auto;
+    object-position: center;
+    transition: transform 0.3s;
   }
 }

@@ -51,11 +51,7 @@ h2 {
 li.cursor-hover:active {
   color: orange;
 }
-.wrapper {
-  /* display: flex; */
-  /* align-items: center; */
-  /* justify-content: space-between; */
-}
+
 #hero {
   display: flex;
   justify-content: space-between;
@@ -71,7 +67,7 @@ li.cursor-hover:active {
 }
 
 .studio-name {
-  font-size: 2em;
+  font-size: 3vw;
   font-weight: bold;
   /* align-self: flex-start; 가로 정렬 */
 }
@@ -89,7 +85,7 @@ li.cursor-hover:active {
   position: fixed; /* 위치 고정 */
   z-index: 100;
   cursor: pointer;
-  right: 50px;
+  right: 40px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
