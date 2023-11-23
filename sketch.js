@@ -1,3 +1,15 @@
+function adjustFontSize() {
+  var textBox = document.querySelector(".wrapper");
+  var boxWidth = textBox.offsetWidth; // 박스의 너비
+  var fontSize = boxWidth / 20; // 박스 너비에 따른 폰트 크기 계산
+
+  textBox.style.fontSize = fontSize + "px";
+}
+
+// 초기 폰트 크기 조정 및 창 크기 변경 시 재조정
+adjustFontSize();
+window.addEventListener("resize", adjustFontSize);
+
 document.addEventListener("DOMContentLoaded", function () {
   const photo = document.querySelector(".photo");
 

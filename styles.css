@@ -28,12 +28,12 @@ section {
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 30px;
   padding: 1rem;
-  /* display: flex; */
-  /* justify-content: center; */
+  display: flex;
+  justify-content: center;
   align-items: center;
 
-  /* display: flex; */
-  /* flex-wrap: wrap; */
+  display: flex;
+  flex-wrap: wrap;
   gap: 5px;
 }
 
@@ -47,8 +47,14 @@ h2 {
   grid-column: span 4;
   grid-row: span 2;
 }
+
 li.cursor-hover:active {
   color: orange;
+}
+.wrapper {
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: space-between; */
 }
 #hero {
   display: flex;
@@ -369,12 +375,18 @@ ul li a.clickable:hover {
 
 /* Mobile devices */
 @media screen and (max-width: 800px) {
+  .wrapper {
+    display: flex;
+  }
   .wrapper ul li {
+    display: flex;
     text-align: center;
     list-style: none;
-    font-size: 50px;
+    font-size: 10vw;
     /* display: table; */
-    margin-bottom: 17px;
+    margin-bottom: 10px;
+    align-items: center;
+    /* justify-content: center; */
   }
   .wrapper ul li a.clickable {
     color: orange;
@@ -384,6 +396,7 @@ ul li a.clickable:hover {
     transition: 0.5s ease;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-touch-callout: none;
+    /* align-items: center; */
   }
   ul li a.clickable:hover {
     letter-spacing: 0px;
@@ -401,7 +414,7 @@ ul li a.clickable:hover {
 
   .studio-name {
     margin-top: 3px;
-    font-size: 1.7em;
+    font-size: 1.3em;
     font-weight: bold;
     /* align-self: flex-start; 가로 정렬 */
   }
@@ -438,6 +451,10 @@ ul li a.clickable:hover {
     grid-column: span 4;
     grid-row: span 3;
     font-size: 10px;
+  }
+
+  .occupation {
+    font-size: 4vw;
   }
   #skills {
     grid-column: span 4;
