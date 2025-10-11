@@ -15,3 +15,7 @@ build/
 # Env files
 .env
 .env.*
+
+# Project assets
+# Ignore large PDFs in wedding project
+img/project/wedding_project/*.pdf
