@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PD 프로젝트 — Project Detail</title>
+    <link rel="stylesheet" href="../styles2.css" />
+    <link rel="stylesheet" href="../styles-detail.css" />
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.2/lib/p5.js"></script>
+    <script src="../sketch2.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <section id="hero">
+        <div class="hero-content">
+          <h2 class="studio-name">
+            <a href="../index.html" class="su-link"><span class="su">Su</span>'studio</a>
+          </h2>
+          <button class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </section>
+      <nav class="menu" id="menu">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../projects.html">Projects</a></li>
+          <li><a href="../strength.html">Strength</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <main class="detail">
+      <div class="card project-header simple">
+        <a href="../projects.html" class="back-link back-only" aria-label="Projects로 돌아가기">←</a>
+        <h1 class="project-title">PD 프로젝트</h1>
+      </div>
+
+      <div class="long-layout">
+        <div class="card project-long">
+          <div class="project-long-strip" id="pdLong"></div>
+        </div>
+        <aside class="long-info">
+          <div class="long-info-sticky">
+            <div class="right-columns">
+              
+              <div class="col">
+                <h3>프로덕션 이력</h3>
+                <ul>
+                  <li>
+                    <strong>2021.09 - 2022.03</strong> 카론크리에이티브 PD
+                    <ul>
+                      <li>피닉스박 방송 편집자</li>
+                      <li>이재석 굿즈 제작</li>
+                      <li>피닉스박 &amp; 괴물쥐 카론 스튜디오 컨텐츠 기획 및 제작</li>
+                    </ul>
+                  </li>
+                  <li>
+                    <strong>2021.02 - 2021.06</strong> 다니엘 프로젝트 PD
+                    <ul>
+                      <li>온라인 강의 플랫폼 ensound 강의 및 홍보 영상 제작</li>
+                      <li>YOUTUBE 채널 ‘gru:v’, ‘그렉형’ 촬영 및 편집</li>
+                      <li>백다연 ‘DRIVE ME’ MV 촬영 보조</li>
+                    </ul>
+                  </li>
+                  <li>
+                    <strong>2020.03 - 2021.01</strong> YOUTUBE / Pranky Friends 프랭키 프렌즈, 14편 제작 / 기획 · 촬영 · 편집
+                    <ul>
+                      <li>놀림 받는 외국인, 그녀를 위해 참교육 하는 한국인들 / 243만뷰</li>
+                      <li>지체장애인의 다리 한쪽이 갑자기 빠졌다, 당신이라면? / 135만뷰</li>
+                      <li>지체장애인의 전동휠체어가 횡단보도에서 갑자기 멈춘다면? / 264만뷰</li>
+                      <li>장애인을 비하 하는 사람 , 당신이라면? / 149만뷰</li>
+                      <li>위험한 선택을 하는 가출소녀, 당신이라면? / 231만뷰</li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="col">
+                <h3>정보</h3>
+                <ul>
+                  <li>역할: PD · 편집 · 기획</li>
+                  <li>도구: Premiere Pro, After Effects</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <script>
+      // Load 6 PNGs (1..6) from img/project/pd
+      (function () {
+        function run() {
+          const container = document.getElementById('pdLong');
+          if (!container) return;
+          const parts = window.location.pathname.split('/').filter(Boolean);
+          const repo = parts.length ? '/' + parts[0] + '/' : '/';
+          const isPages = /\.github\.io$/.test(window.location.hostname);
+          const bases = [];
+          if (isPages) bases.push(window.location.origin + repo + 'img/project/pd/');
+          bases.push(new URL('../img/project/pd/', window.location.href).href);
+          bases.push(window.location.origin + '/img/project/pd/');
+
+          const max = 6;
+          // YouTube links for each image (1..6). Fill in your actual URLs.
+          const ytLinks = [
+            "https://youtu.be/VHVnlArD4ro", // 1 -> 예: "https://youtu.be/xxxxxxxxx"
+            "http://jmagazine.joins.com/forbes/view/331116",
+            "https://youtu.be/VUBAuk05Q_8",
+            "",
+            "",
+            "https://youtu.be/eyCXuLLnRPg",
+          ];
+          function loadSeq(i) {
+            const s = String(i), p2 = s.padStart(2, '0'), p3 = s.padStart(3, '0');
+            const names = [s + '.png', p2 + '.png', p3 + '.png'];
+            const candidates = [];
+            for (const b of bases) for (const n of names) candidates.push(new URL(n, b).href);
+            const url = ytLinks[i - 1] || null;
+            const wrap = document.createElement(url ? 'a' : 'div');
+            wrap.className = 'pd-shot';
+            if (url) { wrap.href = url; wrap.target = '_blank'; wrap.rel = 'noopener'; }
+            const img = document.createElement('img');
+            img.className = 'long-img';
+            img.alt = 'pd image ' + i;
+            img.decoding = 'async';
+            wrap.appendChild(img);
+            if (url) {
+              const icon = document.createElement('span');
+              icon.className = 'play-icon';
+              icon.setAttribute('aria-hidden', 'true');
+              icon.textContent = '▶';
+              wrap.appendChild(icon);
+            }
+            container.appendChild(wrap);
+            (function tryNext() {
+              if (!candidates.length) { try { container.removeChild(wrap); } catch(_){} return; }
+              const src = candidates.shift();
+              img.onerror = tryNext;
+              img.onload = function () {};
+              img.src = src + (src.includes('?') ? '&' : '?') + 'v=' + Date.now();
+            })();
+          }
+          for (let i = 1; i <= max; i++) loadSeq(i);
+        }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
+      })();
+    </script>
+
+    <button id="backToTop" class="back-to-top" aria-label="맨 위로">↑</button>
+    <script>
+      (function(){ const btn=document.getElementById('backToTop'); if(!btn) return; const S=300; function u(){ if(window.scrollY>S) btn.classList.add('show'); else btn.classList.remove('show'); } btn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'})); if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',u); else u(); window.addEventListener('scroll',u,{passive:true});})();
+    </script>
+    <script>
+      // Sidebar offsets (below header and sticky while scrolling)
+      (function(){ const BASE_TOP=20, GAP=12; let t=false; function apply(){ const aside=document.querySelector('.long-info'); const header=document.querySelector('.project-header'); if(!aside) return; if(header){ aside.style.setProperty('--sidebar-margin-top', Math.round(header.offsetHeight+GAP)+'px'); } let top=BASE_TOP; if(header){ const r=header.getBoundingClientRect(); if(r.bottom>0) top=Math.max(BASE_TOP, Math.round(r.bottom+GAP)); } aside.style.setProperty('--sidebar-top', top+'px'); } function req(){ if(t) return; t=true; requestAnimationFrame(()=>{apply(); t=false;}); } if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', apply); else apply(); window.addEventListener('resize', req); window.addEventListener('scroll', req, {passive:true}); })();
+    </script>
+  </body>
+  </html>

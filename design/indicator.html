@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>코인 및 주식 인디케이터 — AI Project</title>
+    <link rel="stylesheet" href="../styles2.css" />
+    <link rel="stylesheet" href="../styles-detail.css" />
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.2/lib/p5.js"></script>
+    <script src="../sketch2.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <section id="hero">
+        <div class="hero-content">
+          <h2 class="studio-name">
+            <a href="../index.html" class="su-link"><span class="su">Su</span>'studio</a>
+          </h2>
+          <button class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </section>
+      <nav class="menu" id="menu">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../projects.html">Projects</a></li>
+          <li><a href="../strength.html">Strength</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <main class="detail">
+      <div class="card project-header simple">
+        <a href="../projects.html" class="back-link back-only" aria-label="Projects로 돌아가기">←</a>
+        <h1 class="project-title">코인 및 주식 인디케이터</h1>
+      </div>
+
+      <div class="long-layout">
+        <div class="card project-long">
+          <div class="project-long-strip" id="indicatorLong"></div>
+        </div>
+        <aside class="long-info">
+          <div class="long-info-sticky">
+            <div class="right-columns">
+              <div class="col">
+                <h3>개요 · 목표</h3>
+                <p>
+                  주식/코인 차트 상에 다양한 기술 지표(선형 회귀 변동성 밴드, 볼린저 밴드, VWAP, EMA, CCI, RSI 등)를
+                  결합하여 매매 신호를 생성하고 시각화하는 목적의 인디케이터 제작.
+                </p>
+                <h3>주요 계산 및 지표 구현</h3>
+                <ul>
+                  <li>선형 회귀 변동성 밴드</li>
+                  <li>볼린저 밴드</li>
+                  <li>VWAP · EMA (다중 기간)</li>
+                  <li>CCI · RSI</li>
+                </ul>
+              </div>
+              <div class="col">
+                <h3>신호 · 레이블</h3>
+                <ul>
+                  <li>매수/매도 조건 정의 및 차트 레이블 표시</li>
+                  <li>지표 교차/밴드 이탈 기반 시그널</li>
+                </ul>
+                <h3>Alert 설정</h3>
+                <ul>
+                  <li>트레이딩 조건 충족 시 알림 트리거</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <script>
+      // Load indicator preview(s) from img/project/indicator
+      (function(){
+        function run(){
+          const container = document.getElementById('indicatorLong');
+          if(!container) return;
+          const parts = window.location.pathname.split('/').filter(Boolean);
+          const repo = parts.length ? '/' + parts[0] + '/' : '/';
+          const isPages = /\.github\.io$/.test(window.location.hostname);
+          const bases = [];
+          if (isPages) bases.push(window.location.origin + repo + 'img/project/indicator/');
+          bases.push(new URL('../img/project/indicator/', window.location.href).href);
+          bases.push(window.location.origin + '/img/project/indicator/');
+
+          const max = 1; // currently 1.png만 사용
+          function loadSeq(i){
+            const s=String(i), p2=s.padStart(2,'0'), p3=s.padStart(3,'0');
+            const names=['main.png', s+'.png', p2+'.png', p3+'.png'];
+            const candidates=[]; for (const b of bases) for (const n of names) candidates.push(new URL(n,b).href);
+            const img = document.createElement('img'); img.className='long-img'; img.alt='indicator '+i; img.decoding='async'; container.appendChild(img);
+            (function next(){ if(!candidates.length){ try{container.removeChild(img);}catch(e){} return; }
+              const src = candidates.shift(); img.onerror = next; img.onload = function(){}; img.src = src + (src.includes('?')?'&':'?') + 'v=' + Date.now(); })();
+          }
+          for (let i=1;i<=max;i++) loadSeq(i);
+        }
+        if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', run); else run();
+      })();
+    </script>
+
+    <button id="backToTop" class="back-to-top" aria-label="맨 위로">↑</button>
+    <script>
+      (function(){ const btn=document.getElementById('backToTop'); if(!btn) return; const S=300; function u(){ if(window.scrollY>S) btn.classList.add('show'); else btn.classList.remove('show'); } btn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'})); if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',u); else u(); window.addEventListener('scroll',u,{passive:true});})();
+    </script>
+    <script>
+      (function(){ const BASE_TOP=20, GAP=12; let t=false; function apply(){ const aside=document.querySelector('.long-info'); const header=document.querySelector('.project-header'); if(!aside) return; if(header){ aside.style.setProperty('--sidebar-margin-top', Math.round(header.offsetHeight+GAP)+'px'); } let top=BASE_TOP; if(header){ const r=header.getBoundingClientRect(); if(r.bottom>0) top=Math.max(BASE_TOP, Math.round(r.bottom+GAP)); } aside.style.setProperty('--sidebar-top', top+'px'); } function req(){ if(t) return; t=true; requestAnimationFrame(()=>{apply(); t=false;}); } if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', apply); else apply(); window.addEventListener('resize', req); window.addEventListener('scroll', req, {passive:true}); })();
+    </script>
+  </body>
+  </html>
+

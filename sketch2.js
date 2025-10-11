@@ -30,12 +30,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const grid = document.querySelector(".projects-grid");
   const allCards = Array.from(document.querySelectorAll(".project-card"));
 
-  const categoryOrder = ["design", "video", "web", "ai"]; // display order
+  // Categories: combine Web/App + AI into Development
+  // Order: Design → Development → PD
+  const categoryOrder = ["design", "dev", "pd"]; // display order
   const categoryLabel = {
     design: "Design",
-    video: "Video",
-    web: "Web",
-    ai: "AI",
+    dev: "Development",
+    pd: "PD",
   };
 
   function clearGrid() {
@@ -57,9 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
     grid.classList.add("grouped");
     clearGrid();
     categoryOrder.forEach((cat) => {
-      const groupCards = allCards.filter(
-        (c) => c.getAttribute("data-category") === cat
-      );
+      const groupCards = allCards.filter((c) => c.getAttribute("data-category") === cat);
       if (groupCards.length === 0) return;
 
       const section = document.createElement("section");
@@ -67,11 +66,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const title = document.createElement("h4");
       title.className = "category-title";
       title.textContent = categoryLabel[cat] || cat;
+      section.appendChild(title);
+
+      // Single-row layout for every category, including Development
       const wrap = document.createElement("div");
       wrap.className = "category-grid";
       groupCards.forEach((c) => wrap.appendChild(c));
-      section.appendChild(title);
       section.appendChild(wrap);
+
       grid.appendChild(section);
     });
   }

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Branding — Design Project</title>
+    <link rel="stylesheet" href="../styles2.css" />
+    <link rel="stylesheet" href="../styles-detail.css" />
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.2/lib/p5.js"></script>
+    <script src="../sketch2.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <section id="hero">
+        <div class="hero-content">
+          <h2 class="studio-name">
+            <a href="../index.html" class="su-link"><span class="su">Su</span>'studio</a>
+          </h2>
+          <button class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </section>
+      <nav class="menu" id="menu">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../projects.html">Projects</a></li>
+          <li><a href="../strength.html">Strength</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <main class="detail">
+      <div class="card project-header simple">
+        <a href="../projects.html" class="back-link back-only" aria-label="Projects로 돌아가기">←</a>
+        <h1 class="project-title">Branding</h1>
+      </div>
+
+      <div class="long-layout">
+        <div class="card project-long">
+          <div class="project-long-strip" id="brandingLong"></div>
+        </div>
+        <aside class="long-info">
+          <div class="long-info-sticky">
+            <div class="right-columns">
+              <div class="col">
+                <h3>프로젝트 주제</h3>
+                <p>제주특별자치도 공공 도서관 통합 브랜드 디자인, 메이플 시럽 브랜드 디자인, 풍년 기름집 패키지 리뉴얼 등 브랜드 핵심가치와 톤앤매너를 체계화한 비주얼 아이덴티티 시스템</p>
+              </div>
+              <div class="col">
+                <h3>정보</h3>
+                <ul>
+                  <li>브랜드 아이덴티티 및 비쥬얼 디자인</li>
+                  <li>Figma, Illustrator</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <script>
+      // Load exactly available PNGs (1..5) from img/project/branding, robust to path
+      (function () {
+        function run() {
+          const container = document.getElementById('brandingLong');
+          if (!container) return;
+
+          const pathParts = window.location.pathname.split('/').filter(Boolean);
+          const repoSegment = pathParts.length ? '/' + pathParts[0] + '/' : '/';
+          const isPages = /\.github\.io$/.test(window.location.hostname);
+          const bases = [];
+          if (isPages) bases.push(window.location.origin + repoSegment + 'img/project/branding/');
+          bases.push(new URL('../img/project/branding/', window.location.href).href);
+          bases.push(window.location.origin + '/img/project/branding/');
+
+          const max = 5; // only 5 images available
+
+          function loadSeq(i) {
+            const s = String(i), p2 = s.padStart(2, '0'), p3 = s.padStart(3, '0');
+            const names = [s + '.png', p2 + '.png', p3 + '.png'];
+            const candidates = [];
+            for (const b of bases) for (const n of names) candidates.push(new URL(n, b).href);
+
+            const img = document.createElement('img');
+            img.className = 'long-img';
+            img.alt = 'branding image ' + i;
+            img.decoding = 'async';
+            container.appendChild(img);
+
+            (function tryNext() {
+              if (!candidates.length) { try { container.removeChild(img); } catch (_) {} return; }
+              const src = candidates.shift();
+              img.onerror = tryNext;
+              img.onload = function () {};
+              img.src = src + (src.includes('?') ? '&' : '?') + 'v=' + Date.now();
+            })();
+          }
+          for (let i = 1; i <= max; i++) loadSeq(i);
+        }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
+      })();
+    </script>
+
+    <button id="backToTop" class="back-to-top" aria-label="맨 위로">↑</button>
+    <script>
+      (function () {
+        const btn = document.getElementById('backToTop'); if (!btn) return;
+        const SHOW_AT = 300; function upd(){ if (window.scrollY>SHOW_AT) btn.classList.add('show'); else btn.classList.remove('show'); }
+        btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', upd); else upd();
+        window.addEventListener('scroll', upd, { passive:true });
+      })();
+    </script>
+
+    <script>
+      // Sidebar offsets
+      (function(){
+        const BASE_TOP=20, GAP=12; let ticking=false;
+        function apply(){
+          const aside=document.querySelector('.long-info'); const header=document.querySelector('.project-header'); if(!aside) return;
+          if(header){ aside.style.setProperty('--sidebar-margin-top', Math.round(header.offsetHeight+GAP)+'px'); }
+          let top=BASE_TOP; if(header){ const r=header.getBoundingClientRect(); if(r.bottom>0) top=Math.max(BASE_TOP, Math.round(r.bottom+GAP)); }
+          aside.style.setProperty('--sidebar-top', top+'px');
+        }
+        function req(){ if(ticking) return; ticking=true; requestAnimationFrame(()=>{apply(); ticking=false;}); }
+        if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', apply); else apply();
+        window.addEventListener('resize', req); window.addEventListener('scroll', req, {passive:true});
+      })();
+    </script>
+  </body>
+  </html>

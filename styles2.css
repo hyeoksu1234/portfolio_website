@@ -264,6 +264,14 @@ h2 {
   text-align: left;
   font-weight: 600;
 }
+
+/* Subcategory title under Development */
+.subcategory-title {
+  font-size: 13px;
+  margin: 4px 6px 6px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+}
 .category-grid {
   display: flex;            /* cards laid out horizontally inside each category */
   flex-wrap: nowrap;

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MA-CC — Web Project</title>
+    <link rel="stylesheet" href="../styles2.css" />
+    <link rel="stylesheet" href="../styles-detail.css" />
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.2/lib/p5.js"></script>
+    <script src="../sketch2.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <section id="hero">
+        <div class="hero-content">
+          <h2 class="studio-name">
+            <a href="../index.html" class="su-link"><span class="su">Su</span>'studio</a>
+          </h2>
+          <button class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </section>
+      <nav class="menu" id="menu">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../projects.html">Projects</a></li>
+          <li><a href="../strength.html">Strength</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <main class="detail">
+      <div class="card project-header simple">
+        <a href="../projects.html" class="back-link back-only" aria-label="Projects로 돌아가기">←</a>
+        <h1 class="project-title">Masterpiece Alliance 코칭 & 컨설팅 사이트
+        </h1>
+      </div>
+
+      <div class="long-layout">
+        <div class="card project-long">
+          <div class="project-long-strip" id="maccLong"></div>
+        </div>
+        <aside class="long-info">
+          <div class="long-info-sticky">
+            <div class="right-columns">
+              <div class="col">
+                <h3>프로젝트 주제</h3>
+                <p>MA-CC 기업 웹사이트 기획 및 개발</p>
+                <h3>링크</h3>
+                <p><a href="https://www.ma-cc.co.kr/" target="_blank" rel="noopener">https://www.ma-cc.co.kr/</a></p>
+              </div>
+              <div class="col">
+                <h3>정보</h3>
+                <ul>
+                  <li>기획 · 디자인 · 구축</li>
+                  <li>Frontend: Next.js(App Router), React 19, TypeScript, Tailwind CSS, Framer Motion <br>
+                    Backend & Infra: Supabase (PostgreSQL/Auth/Storage), Next.js API Routes, Nodemailer, Vercel</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <script>
+      // Load screenshots from img/project/macc
+      (function(){
+        function run(){
+          const container=document.getElementById('maccLong'); if(!container) return;
+          const parts=window.location.pathname.split('/').filter(Boolean);
+          const repo='/'+(parts[0]||'')+'/';
+          const isPages=/\.github\.io$/.test(window.location.hostname);
+          const bases=[]; if(isPages) bases.push(window.location.origin+repo+'img/project/macc/');
+          bases.push(new URL('../img/project/macc/', window.location.href).href);
+          bases.push(window.location.origin+'/img/project/macc/');
+          const max=10; // adjust after adding screenshots
+          const siteUrl = 'https://www.ma-cc.co.kr/';
+          function loadSeq(i){
+            const s=String(i), p2=s.padStart(2,'0'), p3=s.padStart(3,'0');
+            const names=['main.png', s+'.png', p2+'.png', p3+'.png'];
+            const candidates=[]; for(const b of bases) for(const n of names) candidates.push(new URL(n,b).href);
+            // Make the entire image clickable by using an anchor wrapper
+            const wrap=document.createElement('a'); wrap.className='web-shot'; wrap.href=siteUrl; wrap.target='_blank'; wrap.rel='noopener';
+            const img=document.createElement('img'); img.className='long-img'; img.alt='macc '+i; img.decoding='async';
+            const icon=document.createElement('span'); icon.className='visit-icon'; icon.setAttribute('aria-hidden','true'); icon.textContent='↗';
+            wrap.appendChild(img); wrap.appendChild(icon); container.appendChild(wrap);
+            (function next(){ if(!candidates.length){ try{container.removeChild(wrap);}catch(e){} return; }
+              const src=candidates.shift(); img.onerror=next; img.onload=function(){}; img.src=src+(src.includes('?')?'&':'?')+'v='+Date.now(); })();
+          }
+          for(let i=1;i<=max;i++) loadSeq(i);
+        }
+        if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', run); else run();
+      })();
+    </script>
+
+    <button id="backToTop" class="back-to-top" aria-label="맨 위로">↑</button>
+    <script>
+      (function(){ const btn=document.getElementById('backToTop'); if(!btn) return; const S=300; function u(){ if(window.scrollY>S) btn.classList.add('show'); else btn.classList.remove('show'); } btn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'})); if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',u); else u(); window.addEventListener('scroll',u,{passive:true});})();
+    </script>
+    <script>
+      (function(){ const BASE_TOP=20,GAP=12; let t=false; function apply(){ const aside=document.querySelector('.long-info'); const header=document.querySelector('.project-header'); if(!aside) return; if(header){ aside.style.setProperty('--sidebar-margin-top', Math.round(header.offsetHeight+GAP)+'px'); } let top=BASE_TOP; if(header){ const r=header.getBoundingClientRect(); if(r.bottom>0) top=Math.max(BASE_TOP, Math.round(r.bottom+GAP)); } aside.style.setProperty('--sidebar-top', top+'px'); } function req(){ if(t) return; t=true; requestAnimationFrame(()=>{apply(); t=false;}); } if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', apply); else apply(); window.addEventListener('resize', req); window.addEventListener('scroll', req, {passive:true}); })();
+    </script>
+  </body>
+  </html>
