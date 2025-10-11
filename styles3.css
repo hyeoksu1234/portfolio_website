@@ -245,6 +245,56 @@ h2 {
   line-height: 1.6;
 }
 
+/* 1512 width: make all strength cards fit on one page */
+@media screen and (min-width: 1450px) and (max-width: 1560px) {
+  html,
+  body {
+    height: 100%;
+  }
+  .container {
+    height: 100vh;
+    /* slightly tighter vertical spacing between rows */
+    row-gap: 0.45rem;
+    column-gap: 0.6rem;
+    /* Switch to 12 columns so each strength section can span 4 (3-up grid) */
+    grid-template-columns: repeat(12, 1fr);
+    /* Match home nav height (~9.33% of viewport height) */
+    grid-template-rows: 9.33vh;
+    grid-auto-rows: auto;
+  }
+  /* Slimmer hero bar to save vertical space */
+  #hero {
+    padding: 0.4rem 1rem;
+    min-height: 9.33vh;
+    grid-column: span 12;
+  }
+  .studio-name {
+    font-size: clamp(18px, 1.8vw, 28px);
+  }
+  /* Compact strength cards */
+  .strength-section {
+    padding: 0.25rem 0.6rem 0.5rem; /* reduce top padding */
+    max-height: 220px;
+    overflow-y: auto; /* scroll inside if content still overflows */
+    grid-column: span 4; /* 3 per row on 12-col grid */
+    margin: 0; /* prevent extra external spacing */
+    /* Left-align contents on Strength page */
+    align-items: flex-start;
+    text-align: left;
+  }
+  .strength-section h4 {
+    font-size: 1.2em;
+    margin: 0.15rem 0 0.35rem; /* reduce top margin above text */
+    text-align: left;
+    align-self: flex-start;
+  }
+  .strength-section p {
+    font-size: 0.9em;
+    line-height: 1.4;
+    margin: 0;
+  }
+}
+
 @media screen and (max-width: 800px) {
   .wrapper {
     display: flex;

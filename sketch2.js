@@ -23,6 +23,77 @@ document.addEventListener("DOMContentLoaded", () => {
     hamburger.classList.toggle("open");
     menu.classList.toggle("open");
   });
+
+  // Project filtering + grouped 'All'
+  const filterBar = document.querySelector(".filters");
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  const grid = document.querySelector(".projects-grid");
+  const allCards = Array.from(document.querySelectorAll(".project-card"));
+
+  const categoryOrder = ["design", "video", "web", "ai"]; // display order
+  const categoryLabel = {
+    design: "Design",
+    video: "Video",
+    web: "Web",
+    ai: "AI",
+  };
+
+  function clearGrid() {
+    while (grid.firstChild) grid.removeChild(grid.firstChild);
+  }
+
+  function renderCategory(cat) {
+    grid.classList.remove("grouped");
+    clearGrid();
+    allCards.forEach((card) => {
+      card.classList.remove("hidden");
+      if (card.getAttribute("data-category") === cat) {
+        grid.appendChild(card);
+      }
+    });
+  }
+
+  function renderAllGrouped() {
+    grid.classList.add("grouped");
+    clearGrid();
+    categoryOrder.forEach((cat) => {
+      const groupCards = allCards.filter(
+        (c) => c.getAttribute("data-category") === cat
+      );
+      if (groupCards.length === 0) return;
+
+      const section = document.createElement("section");
+      section.className = "category-group";
+      const title = document.createElement("h4");
+      title.className = "category-title";
+      title.textContent = categoryLabel[cat] || cat;
+      const wrap = document.createElement("div");
+      wrap.className = "category-grid";
+      groupCards.forEach((c) => wrap.appendChild(c));
+      section.appendChild(title);
+      section.appendChild(wrap);
+      grid.appendChild(section);
+    });
+  }
+
+  if (filterBar && grid) {
+    // Initial render as grouped All
+    renderAllGrouped();
+    filterBar.addEventListener("click", (e) => {
+      const btn = e.target.closest(".filter-btn");
+      if (!btn) return;
+
+      filterBtns.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const target = btn.dataset.filter;
+      if (target === "all") {
+        renderAllGrouped();
+      } else {
+        renderCategory(target);
+      }
+    });
+  }
 });
 
 function openProjectsPage() {

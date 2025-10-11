@@ -220,6 +220,15 @@ li.cursor-hover:active {
   transition: transform 0.3s;
 }
 
+/* Home: long strip of PNGs inside #my_photo_2 */
+.home-long-strip img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 30px;
+  margin: 8px 0;
+}
+
 #about {
   grid-column: span 2;
   grid-row: span 1;
@@ -611,7 +620,8 @@ ul li a.clickable:hover {
 
   .container {
     height: 100vh; /* keep bento size fixed to viewport */
-    grid-template-rows: repeat(3, minmax(0, 1fr)); /* original equal rows */
+    /* Bump nav (row 1) height slightly more */
+    grid-template-rows: 0.28fr 1fr 1.72fr;
     grid-auto-rows: initial; /* no implicit growth to keep sizes */
     gap: 0.6rem;
     padding: 0.5rem;
@@ -640,7 +650,7 @@ ul li a.clickable:hover {
     font-size: clamp(28px, 3.2vw, 52px);
   }
   .studio-name {
-    font-size: clamp(28px, 3vw, 44px);
+    font-size: clamp(18px, 1.8vw, 28px);
   }
 
   /* Make images fill their cards */
@@ -649,9 +659,9 @@ ul li a.clickable:hover {
     height: 100%;
   }
   
-  /* Make the left "Hello/This/Is/My/Work" bento smaller */
+  /* Keep left bento spanning 2 rows */
   #home {
-    grid-row: span 1; /* reduce height from 2 rows to 1 */
+    grid-row: span 2;
     padding: 0.8rem; /* slightly tighter padding */
   }
 
@@ -662,7 +672,40 @@ ul li a.clickable:hover {
   .dot {
     width: 16px;
     height: 16px;
-    margin: 0 8px 8px 0;
+    margin: 0 10px 10px 0; /* slightly tighter spacing */
+  }
+
+  /* Widen vertical spacing between skill rows */
+  .skill {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .skill-label {
+    margin-bottom: 8px;
+  }
+
+  /* About card text size tweaks (1512 width) */
+  #about .name {
+    font-size: 1.2em;
+  }
+  #about .info {
+    font-size: 1.2em;
+  }
+  #about .occupation {
+    font-size: 22px;
+    line-height: 1.3;
+  }
+
+  /* Strengths: make each label box smaller to fit in one bento */
+  #strengths .strengths-content {
+    padding: 10px; /* add a bit more breathing room around the list */
+  }
+  #strengths .strength-box {
+    padding: 14px 10px; /* slightly larger internal padding */
+    margin: 12px 0; /* wider vertical spacing between boxes */
+  }
+  #strengths .strength-theme h4 {
+    font-size: 0.8em;
   }
 
   /* Narrow the side menu slightly on this width */
