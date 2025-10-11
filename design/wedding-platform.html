@@ -97,9 +97,14 @@
         const pathParts = window.location.pathname.split('/').filter(Boolean);
         const repoSegment = pathParts.length ? '/' + pathParts[0] + '/' : '/';
         const isGitHubPages = /\.github\.io$/.test(window.location.hostname);
-        const baseHref = isGitHubPages
-          ? window.location.origin + repoSegment + 'img/project/wedding_project/'
-          : new URL('../img/project/wedding_project/', window.location.href).href;
+        const candidateBases = [];
+        if (isGitHubPages) {
+          candidateBases.push(window.location.origin + repoSegment + 'img/project/wedding_project/');
+        }
+        // Relative to current page
+        candidateBases.push(new URL('../img/project/wedding_project/', window.location.href).href);
+        // Absolute from server root
+        candidateBases.push(window.location.origin + '/img/project/wedding_project/');
 
         const max = 138; // adjust if needed
         function loadSeq(i) {
@@ -107,7 +112,10 @@
           const p2 = String(i).padStart(2, '0');
           const p3 = String(i).padStart(3, '0');
           const files = [p2 + '.png', plain + '.png', p3 + '.png', p2 + '.PNG', plain + '.PNG', p3 + '.PNG'];
-          const candidates = files.map((f) => new URL(f, baseHref).href);
+          const candidates = [];
+          for (const base of candidateBases) {
+            for (const f of files) candidates.push(new URL(f, base).href);
+          }
           (function tryNext() {
             if (!candidates.length) {
               if (window.console && console.debug) console.debug('[weddingLong] no file for index', i);
