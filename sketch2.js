@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   clickableLinks.forEach((link) => {
     link.addEventListener("click", function () {
-      if (window.innerWidth <= 1000) {
+      if (window.innerWidth <= 800) {
         // 모바일 화면 크기 기준 (1000px 이하)
         if (link.style.letterSpacing === "0px") {
           link.style.letterSpacing = "5px"; // 원래 간격으로 되돌리기

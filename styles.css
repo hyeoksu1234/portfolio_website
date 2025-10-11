@@ -63,7 +63,9 @@ li.cursor-hover:active {
 .hero-content {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
+  padding-right: 20px; /* 오른쪽 마진 추가 */
 }
 
 .studio-name {
@@ -82,6 +84,7 @@ li.cursor-hover:active {
 }
 
 .hamburger {
+  /* margin-top: 10px; */
   position: fixed; /* 위치 고정 */
   z-index: 100;
   cursor: pointer;
@@ -189,7 +192,7 @@ li.cursor-hover:active {
   overflow: hidden; /* 이미지가 섹션 밖으로 넘치지 않게 함 */
 }
 #my_photo:hover .photo {
-  transform: scale(1.2); /* 마우스 호버시 이미지를 1.1배로 확대 */
+  transform: scale(1.2); /* 우스 호버시 이미지를 1.1배로 확대 */
 }
 .photo {
   object-fit: cover;
@@ -252,7 +255,7 @@ li.cursor-hover:active {
 
 .occupation {
   margin-top: 10px;
-  font-size: 20px;
+  font-size: 30px;
   color: #555;
 }
 
@@ -266,67 +269,69 @@ li.cursor-hover:active {
   grid-column: span 2;
   grid-row: span 1;
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-
-  display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  /* text-align: center; */
-  height: 100%; /* 필요에 따라 조절 */
-  /* align-items: flex-start; */
+  height: 100%;
+  padding: 20px;
+  overflow: hidden;
 }
 
 .skills-graph {
   display: flex;
+  flex-direction: column;
   width: 100%;
-  /* flex-direction: column; */
-  /* align-items: flex-start; */
-  flex-wrap: wrap;
 }
 
 .skill {
-  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 5px;
+  margin-bottom: 5px;
   width: 100%;
 }
 
 .skill-label {
   margin-bottom: 5px;
+  font-size: 20px;
   font-weight: bold;
 }
 
-.skill-bar {
-  width: 100%;
-  height: 10px;
-  background-color: lightgray;
-  border-radius: 5px;
+.skill-dots {
+  display: flex;
+  flex-wrap: nowrap;
   overflow: hidden;
-  margin-bottom: 10px;
-}
-
-.skill-level {
-  height: 100%;
-}
-
-.skill-level-100 {
   width: 100%;
+}
+
+.dot {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #333;
+  margin: 0 5px 5px 0;
+}
+
+.dot.filled {
   background-color: orange;
 }
 
-.skill-level-90 {
-  width: 90%;
-  background-color: orange;
-}
+@media screen and (max-width: 800px) {
+  #skills {
+    padding: 10px;
+  }
 
-.skill-level-80 {
-  width: 80%;
-  background-color: orange;
-}
+  .skill-label {
+    font-size: 16px;
+  }
 
-.skill-level-70 {
-  width: 70%;
-  background-color: orange;
+  .dot {
+    width: 16px;
+    height: 16px;
+    margin: 0 4px 4px 0;
+  }
 }
 
 #my_photo_2 {
@@ -369,7 +374,84 @@ ul li a.clickable:hover {
   letter-spacing: 15px;
 }
 
-/* Mobile devices */
+#strengths {
+  grid-column: span 2;
+  grid-row: span 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.strengths-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px;
+}
+
+.strength-box {
+  border-radius: 10px;
+  padding: 24px 8px;
+  margin: 8px 0;
+  width: 100%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.strength-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+}
+
+.strength-box:nth-child(1) {
+  background-color: #ffe4b5;
+}
+
+.strength-box:nth-child(2) {
+  background-color: #e6e6fa;
+}
+
+.strength-box:nth-child(3) {
+  background-color: #c8f7c3;
+}
+
+.strength-box:nth-child(4) {
+  background-color: #ffe4b5;
+}
+
+.strength-box:nth-child(5) {
+  background-color: #e6e6fa;
+}
+
+.strength-theme h4 {
+  font-size: 0.9em;
+  margin: 0;
+  text-align: center;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.strength-box:hover .strength-theme h4 {
+  transform: scale(1.05);
+}
+
+.strength-description {
+  margin-top: 10px;
+  font-size: 0.8em;
+  color: #333;
+  text-align: left;
+}
+
+.strength-box {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 800px) {
   .wrapper {
     display: flex;
@@ -449,6 +531,11 @@ ul li a.clickable:hover {
     grid-row: span 3;
     font-size: 10px;
   }
+  .info {
+    margin-top: 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
 
   .occupation {
     font-size: 4vw;
@@ -464,5 +551,50 @@ ul li a.clickable:hover {
     grid-column: span 8;
     /* grid-row: span 2; */
     /* Other mobile-specific styles */
+  }
+  #strengths {
+    grid-column: span 8;
+    /* width: calc(100% - 1rem); */
+    /* margin: 0 0.5rem; */
+    padding: 1rem;
+  }
+
+  .strengths-content {
+    width: 100%;
+    font-size: 20px;
+  }
+
+  .strength-box {
+    width: 100%;
+  }
+
+  .strength-box:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .strength-box:active {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #333;
+  margin: 0 20px 20px 0;
+}
+
+.dot.filled {
+  background-color: orange;
+}
+
+@media screen and (max-width: 800px) {
+  .dot {
+    width: 12px;
+    height: 12px;
+    margin: 0 12px 12px 0;
   }
 }

@@ -1,12 +1,15 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:900");
+
 body {
   background: #000;
   font-family: sans-serif;
   overflow: hidden;
 }
+
 body * {
   box-sizing: border-box;
 }
+
 html {
   height: 100%;
   margin: 0;
@@ -31,8 +34,6 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  display: flex;
   flex-wrap: wrap;
   gap: 5px;
 }
@@ -42,37 +43,39 @@ h2 {
   margin: 0;
 }
 
-/* Custom sizes for different cards */
 #hero {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1rem; /* 좌우 패딩 추가 */
-  grid-column: span 4;
+  padding: 0 1rem;
+  grid-column: span 8;
   height: 100%;
 }
+
 .hero-content {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
+  padding-right: 20px;
 }
 
 .studio-name {
-  font-size: 3vw;
+  font-size: 1.5em;
   font-weight: bold;
-  /* align-self: flex-start; 가로 정렬 */
 }
-.studio-name .su {
-  color: rgba(255, 255, 255, 0.4); /* 색상 밝기를 조정 */
-}
+
 .su-link {
-  text-decoration: none; /* 링크 밑줄 제거 */
-  color: inherit; /* 현재 텍스트의 색상을 그대로 사용 */
-  cursor: pointer; /* 마우스 오버 시 포인터 커서로 변경 */
-  /* 필요한 경우 다른 스타일 규칙 추가 */
+  text-decoration: none;
+  color: #fff;
+}
+
+.su {
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .hamburger {
+  /* margin-top: 10px; */
   position: fixed; /* 위치 고정 */
   z-index: 100;
   cursor: pointer;
@@ -166,7 +169,7 @@ h2 {
   grid-column: span 2;
   height: 420px;
   /* position: relative; */
-  width: 100%;
+  width: 50%;
   /* height: 100%; */
   overflow: hidden; /* 이미지가 섹션 밖으로 넘치지 않게 함 */
 }
@@ -185,10 +188,13 @@ h1 {
   top: 0;
   left: 0;
   border-radius: 30px;
-  width: 60%;
-  height: auto;
+  width: 30%;
+  /* height: auto; */
   object-position: center;
   transition: transform 0.3s;
+}
+h2 {
+  color: rgba(255, 255, 255, 0.4);
 }
 
 /* Mobile devices */
@@ -269,5 +275,12 @@ h1 {
     height: auto;
     object-position: center;
     transition: transform 0.3s;
+  }
+}
+
+/* 반응형 디자인을 위한 미디어 쿼리 */
+@media (max-width: 800px) {
+  .studio-name {
+    font-size: 6vw; /* 모바일에서 더 큰 폰트 크기 */
   }
 }

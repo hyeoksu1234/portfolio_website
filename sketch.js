@@ -29,32 +29,39 @@ function openProjectsPage() {
   window.location.href = "projects.html"; // Replace 'projects.html' with the actual path to your projects page
 }
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   const skillsData = [
-//     { name: "Photoshop", level: 100 },
-//     { name: "Illustrator", level: 100 },
-//     { name: "Premiere Pro", level: 100 },
-//     { name: "After Effects", level: 80 },
-//     { name: "C4D", level: 80 },
-//     { name: "3D Max", level: 70 },
-//     { name: "Chat GPT", level: 80 },
-//   ];
+document.addEventListener("DOMContentLoaded", function () {
+  const skills = [
+    { name: "Photoshop", level: 1 },
+    { name: "Illustrator", level: 1 },
+    { name: "Premiere Pro", level: 1 },
+    { name: "After Effects", level: 0.9 },
+    { name: "AI", level: 0.9 },
+  ];
 
-//   const skillsChart = document.querySelector(".skills-chart");
+  function updateSkillDots() {
+    const skillsSection = document.querySelector("#skills");
+    const skillWidth = skillsSection.offsetWidth;
+    const isMobile = window.innerWidth <= 800;
+    const maxDots = isMobile
+      ? Math.min(14, Math.floor(skillWidth / 25))
+      : Math.min(10, Math.floor(skillWidth / 43));
 
-//   skillsData.forEach((skill) => {
-//     const skillItem = document.createElement("div");
-//     skillItem.classList.add("skill-item");
+    skills.forEach((skill, index) => {
+      const skillDots = document.querySelectorAll(".skill-dots")[index];
+      skillDots.innerHTML = "";
+      const dotCount = Math.floor(maxDots * skill.level);
 
-//     const skillName = document.createElement("div");
-//     skillName.classList.add("skill-name");
-//     skillName.textContent = skill.name;
+      for (let i = 0; i < maxDots; i++) {
+        const dot = document.createElement("span");
+        dot.classList.add("dot");
+        if (i < dotCount) {
+          dot.classList.add("filled");
+        }
+        skillDots.appendChild(dot);
+      }
+    });
+  }
 
-//     const skillBar = document.createElement("div");
-//     skillBar.classList.add("skill-bar");
-
-//     const skillBarFill = document.createElement("div");
-//     skillBarFill.classList.add("skill-bar-fill", "orange");
-//     skillBarFill.style.width = `${skill.level}%`;
-//   });
-// });
+  updateSkillDots();
+  window.addEventListener("resize", updateSkillDots);
+});
