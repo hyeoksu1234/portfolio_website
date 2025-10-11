@@ -87,9 +87,20 @@
       // Long stream: load 01.png..138.png as full-width images
       (function () {
         const container = document.getElementById('weddingLong');
-        if (!container) return;
-        // Resolve base path robustly from current page URL
-        const baseHref = new URL('../img/project/wedding_project/', window.location.href).href;
+        if (!container) {
+          console.warn('[weddingLong] Container not found');
+          return;
+        }
+        // Robust base path resolution for GitHub Pages project sites and local
+        // e.g., https://user.github.io/<repo>/design/wedding-platform.html
+        // Derive first path segment as repo name when hosted on GitHub Pages
+        const pathParts = window.location.pathname.split('/').filter(Boolean);
+        const repoSegment = pathParts.length ? '/' + pathParts[0] + '/' : '/';
+        const isGitHubPages = /\.github\.io$/.test(window.location.hostname);
+        const baseHref = isGitHubPages
+          ? window.location.origin + repoSegment + 'img/project/wedding_project/'
+          : new URL('../img/project/wedding_project/', window.location.href).href;
+
         const max = 138; // adjust if needed
         function loadSeq(i) {
           const plain = String(i);
@@ -98,15 +109,22 @@
           const files = [p2 + '.png', plain + '.png', p3 + '.png', p2 + '.PNG', plain + '.PNG', p3 + '.PNG'];
           const candidates = files.map((f) => new URL(f, baseHref).href);
           (function tryNext() {
-            if (!candidates.length) return; // none found; skip number
+            if (!candidates.length) {
+              if (window.console && console.debug) console.debug('[weddingLong] no file for index', i);
+              return; // none found; skip number
+            }
             const src = candidates.shift();
             const img = new Image();
             img.alt = 'wedding main image ' + i;
             img.loading = 'lazy';
             img.className = 'long-img';
             img.onload = function () { container.appendChild(img); };
-            img.onerror = tryNext; // try next candidate
-            img.src = src + (src.includes('?') ? '&' : '?') + 'v=' + Date.now(); // cache-bust
+            img.onerror = function () {
+              if (window.console && console.debug) console.debug('[weddingLong] missing', src);
+              tryNext(); // try next candidate
+            };
+            // cache-bust to avoid stale CDN on first deploys
+            img.src = src + (src.includes('?') ? '&' : '?') + 'v=' + Date.now();
           })();
         }
         for (let i = 1; i <= max; i++) loadSeq(i);
