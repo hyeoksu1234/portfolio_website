@@ -42,49 +42,13 @@
         <p class="project-meta">Category: Design · UX · Year: 2025</p>
       </div>
 
-      <div class="card project-body">
-        <section class="project-overview">
-          <h3>프로젝트 주제</h3>
-          <p>
-            예비부부를 위한 투명하고 신뢰도 높은 웨딩 준비 플랫폼 UX 개선.
-            기존 웨딩 플랫폼(아이웨딩, 웨딩북 등)의 불투명한 정보 구조와 복잡한 견적
-            비교 과정을 개선하여, 사용자가 직관적이고 신뢰할 수 있는 정보를 기반으로
-            결혼 준비를 할 수 있도록 하는 것을 목표로 합니다.
-          </p>
 
-          <h3>핵심 UX 목표</h3>
-          <ul>
-            <li>배우자와 함께 결혼 진척도 및 비용을 한눈에 파악할 수 있는 협업형 UX 제공</li>
-            <li>사용자 취향 분석을 기반으로 맞춤형 상품과 플래너 추천</li>
-            <li>정보의 투명성 강화 — 불필요한 중개나 감춰진 견적 정보 제거</li>
-            <li>결혼 준비 과정 전반의 피로도 감소 및 효율적 일정 관리 실현</li>
-          </ul>
-
-          <h3>💡 핵심 가설 (UX Hypotheses)</h3>
-          <ul>
-            <li>결혼 진척도와 비용을 꼼꼼히 확인할 수 있어야 한다.</li>
-            <li>사용자의 취향을 분석하고 선호할 만한 선택지를 먼저 제공해야 한다.</li>
-            <li>정보를 투명하게 공개해 신뢰성과 접근성을 높여야 한다.</li>
-          </ul>
-        </section>
-
-        <aside class="project-specs">
-          <h3>정보</h3>
-          <ul>
-            <li>역할: UX 기획 · UI 디자인</li>
-            <li>도구: Figma, Illustrator, Photoshop</li>
-            <li>산출물: 사용자 여정/플로우, 와이어프레임, 하이파이 UI</li>
-          </ul>
-        </aside>
-      </div>
-
-      <div class="card project-long">
-        <div class="long-grid">
-          <section class="long-left">
-            <h3>메인 비주얼</h3>
-            <div class="project-long-strip" id="weddingLong"></div>
-          </section>
-          <aside class="long-right">
+      <div class="long-layout">
+        <div class="card project-long">
+          <div class="project-long-strip" id="weddingLong"></div>
+        </div>
+        <aside class="long-info">
+          <div class="long-info-sticky">
             <div class="right-columns">
               <div class="col">
                 <h3>프로젝트 주제</h3>
@@ -113,14 +77,14 @@
 
                 <h3>정보</h3>
                 <ul>
-                  <li>역할: UX 기획 · UI 디자인</li>
+                  <li>역할: UX 기획</li>
                   <li>도구: Figma, Illustrator, Photoshop</li>
-                  <li>산출물: 사용자 여정/플로우, 와이어프레임, 하이파이 UI</li>
+                  <li>산출물: 사용자 여정/플로우, 와이어프레임</li>
                 </ul>
               </div>
             </div>
-          </aside>
-        </div>
+          </div>
+        </aside>
       </div>
     </main>
     <script>
@@ -152,7 +116,7 @@
             bases: candidateBases,
           });
 
-          const max = 138; // adjust if needed
+          const max = 139; // adjust if needed
           let loadedCount = 0;
           container.style.minHeight = '10px';
 
@@ -225,6 +189,48 @@
         } else {
           run();
         }
+      })();
+    </script>
+    <script>
+      // Sidebar: start below the header and follow scroll smoothly
+      (function () {
+        const BASE_TOP = 20;   // when header is off-screen
+        const GAP = 12;        // spacing below header
+        let ticking = false;
+
+        function applyOffsets() {
+          const aside = document.querySelector('.long-info');
+          const header = document.querySelector('.project-header');
+          if (!aside) return;
+
+          // Initial placement: give aside margin so it starts below header
+          if (header) {
+            const headerHeight = Math.round(header.offsetHeight + GAP);
+            aside.style.setProperty('--sidebar-margin-top', headerHeight + 'px');
+          }
+
+          // Sticky top: while header is visible, keep sidebar below it; else use base top
+          let top = BASE_TOP;
+          if (header) {
+            const r = header.getBoundingClientRect();
+            if (r.bottom > 0) top = Math.max(BASE_TOP, Math.round(r.bottom + GAP));
+          }
+          aside.style.setProperty('--sidebar-top', top + 'px');
+        }
+
+        function req() {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(() => { applyOffsets(); ticking = false; });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', applyOffsets);
+        } else {
+          applyOffsets();
+        }
+        window.addEventListener('resize', req);
+        window.addEventListener('scroll', req, { passive: true });
       })();
     </script>
   </body>
