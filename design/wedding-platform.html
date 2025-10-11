@@ -144,20 +144,30 @@
             for (const base of bases) {
               for (const f of files) candidates.push(new URL(f, base).href);
             }
+
+            // Append element first so browser/network shows attempts immediately
+            const img = document.createElement('img');
+            img.alt = 'wedding main image ' + i;
+            img.className = 'long-img';
+            img.decoding = 'async';
+            container.appendChild(img);
+
             (function tryNext() {
               if (!candidates.length) {
                 if (window.console && console.debug) console.debug('[weddingLong] no file for index', i);
+                // Remove placeholder if nothing matched
+                try { container.removeChild(img); } catch (_) {}
                 return; // none found; skip number
               }
               const src = candidates.shift();
-              const img = new Image();
-              img.alt = 'wedding main image ' + i;
-              img.loading = 'lazy';
-              img.className = 'long-img';
-              img.onload = function () { loadedCount++; container.appendChild(img); window.__weddingLongLoaded = loadedCount; };
+              img.onload = function () {
+                loadedCount++;
+                window.__weddingLongLoaded = loadedCount;
+              };
               img.onerror = function () {
                 if (window.console && console.debug) console.debug('[weddingLong] missing', src);
-                tryNext(); // try next candidate
+                // Try next candidate into the same element
+                tryNext();
               };
               // cache-bust to avoid stale CDN on first deploys
               img.src = src + (src.includes('?') ? '&' : '?') + 'v=' + Date.now();
