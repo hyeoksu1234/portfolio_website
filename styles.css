@@ -598,3 +598,60 @@ ul li a.clickable:hover {
     margin: 0 12px 12px 0;
   }
 }
+
+/* MacBook 1512x982 targeted layout tuning
+   Note: use width-only so browser UI height doesn't block it */
+@media screen and (min-width: 1450px) and (max-width: 1560px) {
+  html,
+  body {
+    height: 100%;
+  }
+
+  .container {
+    height: 100vh; /* Fill viewport height */
+    grid-template-rows: repeat(3, minmax(0, 1fr)); /* Three equal rows */
+    grid-auto-rows: initial; /* Use explicit rows above */
+    gap: 0.6rem;
+    padding: 0.5rem;
+  }
+
+  /* Ensure each tile fills its grid area */
+  #home,
+  #hero,
+  #my_photo,
+  #about,
+  #skills,
+  #my_photo_2,
+  #strengths {
+    height: 100%;
+  }
+
+  /* Scale typography to avoid overflow */
+  .wrapper ul li {
+    font-size: clamp(36px, 4vw, 64px);
+  }
+  .studio-name {
+    font-size: clamp(28px, 3vw, 44px);
+  }
+
+  /* Make images fill their cards */
+  .photo,
+  .projects_photo {
+    height: 100%;
+  }
+
+  /* Slightly tighter skill visuals */
+  .skill-label {
+    font-size: 18px;
+  }
+  .dot {
+    width: 16px;
+    height: 16px;
+    margin: 0 8px 8px 0;
+  }
+
+  /* Narrow the side menu slightly on this width */
+  .menu {
+    width: 22%;
+  }
+}
