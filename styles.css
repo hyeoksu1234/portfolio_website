@@ -2,7 +2,9 @@
 body {
   background: #000;
   font-family: sans-serif;
-  overflow: hidden;
+  /* Allow page scrolling; hide only horizontal overflow */
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 body * {
   box-sizing: border-box;
@@ -608,9 +610,9 @@ ul li a.clickable:hover {
   }
 
   .container {
-    height: 100vh; /* Fill viewport height */
-    grid-template-rows: repeat(3, minmax(0, 1fr)); /* Three equal rows */
-    grid-auto-rows: initial; /* Use explicit rows above */
+    height: 100vh; /* keep bento size fixed to viewport */
+    grid-template-rows: repeat(3, minmax(0, 1fr)); /* original equal rows */
+    grid-auto-rows: initial; /* no implicit growth to keep sizes */
     gap: 0.6rem;
     padding: 0.5rem;
   }
@@ -623,12 +625,19 @@ ul li a.clickable:hover {
   #skills,
   #my_photo_2,
   #strengths {
-    height: 100%;
+    height: 100%; /* keep card (bento) heights fixed */
+  }
+
+  /* Allow inner scrolling without changing bento size */
+  section {
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   /* Scale typography to avoid overflow */
   .wrapper ul li {
-    font-size: clamp(36px, 4vw, 64px);
+    font-size: clamp(28px, 3.2vw, 52px);
   }
   .studio-name {
     font-size: clamp(28px, 3vw, 44px);
@@ -638,6 +647,12 @@ ul li a.clickable:hover {
   .photo,
   .projects_photo {
     height: 100%;
+  }
+  
+  /* Make the left "Hello/This/Is/My/Work" bento smaller */
+  #home {
+    grid-row: span 1; /* reduce height from 2 rows to 1 */
+    padding: 0.8rem; /* slightly tighter padding */
   }
 
   /* Slightly tighter skill visuals */
