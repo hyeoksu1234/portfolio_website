@@ -106,10 +106,29 @@ main.detail {
 }
 .project-long .long-left { min-width: 0; }
 .project-long .long-right {
-  position: sticky;
-  top: 12px;
+  position: sticky;          /* 화면에 고정(스크롤 따라붙음) */
+  top: 20px;                 /* 상단 여백 */
   align-self: start;
+  max-height: calc(100vh - 24px);
+  overflow: auto;            /* 내용이 길면 내부 스크롤 */
+  padding-right: 6px;
 }
+.project-long .long-right .right-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;  /* 30% 영역 안에서 2-칼럼 구분 */
+  gap: 12px;
+}
+.project-long .long-right h3 {
+  margin: 8px 0 6px;
+  font-size: 16px;
+}
+.project-long .long-right p,
+.project-long .long-right li {
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.9);
+}
+.project-long .long-right ul { padding-left: 18px; margin: 6px 0 10px; }
 .project-long-strip img.long-img {
   width: 90%;            /* smaller than full column width */
   max-width: 1100px;     /* cap overly wide images on large screens */
@@ -131,5 +150,6 @@ main.detail {
 @media screen and (max-width: 800px) {
   .project-body { grid-template-columns: 1fr; }
   .project-long .long-grid { grid-template-columns: 1fr; }
+  .project-long .long-right .right-columns { grid-template-columns: 1fr; }
   .project-long-strip img.long-img { width: 100%; max-width: none; margin: 10px 0; }
 }
