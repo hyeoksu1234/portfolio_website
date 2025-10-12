@@ -223,6 +223,13 @@ main.detail {
   align-items: start;
   position: relative; /* for absolute/fixed calculations if needed */
 }
+.long-layout.single { grid-template-columns: 1fr; }
+.long-layout.single .long-info { display: none; }
+.long-layout.single .project-long-strip img.long-img {
+  width: 100%;
+  max-width: 1400px;
+  margin: 12px auto;
+}
 .long-info {
   position: sticky;                    /* 그리드 아이템 자체를 sticky로 */
   top: var(--sidebar-top, 20px);       /* 스크롤 중 상단 오프셋 */

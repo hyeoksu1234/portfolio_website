@@ -55,7 +55,7 @@
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="projects.html">Projects</a></li>
-          <li><a href="strength.html">Strength</a></li>
+          <li><a href="about.html">About</a></li>
         </ul>
       </nav>
       <section id="my_photo">
@@ -63,19 +63,14 @@
       </section>
       <section id="about">
         <div class="about-content_1">
-          <h3 class="name">Name: Lee Hyeoksu</h3>
-          <p class="info">
-            Birth: 00.01.06
-            <!-- <br /> -->
-          </p>
+          <h3 class="name">Lee Hyeoksu</h3>
+          
           <p class="occupation">
-            <!-- Occupation: <br /> -->
-            Contents Creator <br />
-            Creative Director <br />
-            Frontend Developer
+            UX Writer <br> Brand Experience Designer <br> Interactive Developer
           </p>
         </div>
       </section>
+      <!-- Skills section (restored) -->
       <section id="skills">
         <div class="skills-graph">
           <div class="skill">
@@ -100,6 +95,7 @@
           </div>
         </div>
       </section>
+      
 
       <section id="my_photo_2" onclick="openProjectsPage()">
         <!-- Projects 썸네일 이미지 유지 -->
@@ -110,36 +106,46 @@
         />
       </section>
 
+      <!-- Strengths column (home) -->
       <section id="strengths">
         <div class="strengths-content">
-          <a href="strength.html" class="strength-box">
+          <a href="#" class="strength-box js-no-nav" aria-disabled="true">
             <div class="strength-theme">
               <h4>1. 사교성 테마 (Woo)</h4>
             </div>
           </a>
-          <a href="strength.html" class="strength-box">
+          <a href="#" class="strength-box js-no-nav" aria-disabled="true">
             <div class="strength-theme">
               <h4>2. 성취 테마 (Achiever)</h4>
             </div>
           </a>
-          <a href="strength.html" class="strength-box">
+          <a href="#" class="strength-box js-no-nav" aria-disabled="true">
             <div class="strength-theme">
               <h4>3. 미래지향 테마 (Futuristic)</h4>
             </div>
           </a>
-          <a href="strength.html" class="strength-box">
+          <a href="#" class="strength-box js-no-nav" aria-disabled="true">
             <div class="strength-theme">
               <h4>4. 커뮤니케이션 테마 (Communication)</h4>
             </div>
           </a>
-          <a href="strength.html" class="strength-box">
+          <a href="#" class="strength-box js-no-nav" aria-disabled="true">
             <div class="strength-theme">
               <h4>5. 정리 테마 (Arranger)</h4>
             </div>
           </a>
         </div>
       </section>
+
+      
     </div>
     <!-- 홈에서는 기본 썸네일 이미지만 사용 -->
+    <script>
+      // Keep Strength visible but disable navigation from home
+      document.addEventListener('click', function(e){
+        const a = e.target.closest('a.js-no-nav');
+        if(a){ e.preventDefault(); }
+      });
+    </script>
   </body>
 </html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About — Su'studio</title>
+    <link rel="stylesheet" href="styles2.css" />
+    <link rel="stylesheet" href="styles-detail.css" />
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.2/lib/p5.js"></script>
+    <script src="sketch2.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <section id="hero">
+        <div class="hero-content">
+          <h2 class="studio-name">
+            <a href="index.html" class="su-link"><span class="su">Su</span>'studio</a>
+          </h2>
+          <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </section>
+
+      <nav class="menu" id="menu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <main class="detail">
+      <div class="card project-header simple">
+        <a href="index.html" class="back-link back-only" aria-label="홈으로">←</a>
+        <h1 class="project-title">About</h1>
+      </div>
+
+      <div class="long-layout single">
+        <div class="card project-long">
+          <div class="project-long-strip">
+            <img src="img/my_photo/1.png" alt="Profile" class="long-img" />
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <button id="backToTop" class="back-to-top" aria-label="맨 위로">↑</button>
+    <script>
+      (function(){ const btn=document.getElementById('backToTop'); if(!btn) return; const S=300; function u(){ if(window.scrollY>S) btn.classList.add('show'); else btn.classList.remove('show'); } btn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'})); if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',u); else u(); window.addEventListener('scroll',u,{passive:true});})();
+    </script>
+  </body>
+  </html>
