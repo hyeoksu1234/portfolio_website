@@ -221,6 +221,11 @@ li.cursor-hover:active {
   transition: transform 0.3s;
 }
 
+/* Mobile: shrink home portfolio tile to half height */
+@media screen and (max-width: 800px) {
+  .projects_photo { height: 300px; }
+}
+
 /* Home: long strip of PNGs inside #my_photo_2 */
 .home-long-strip img {
   width: 100%;
@@ -344,6 +349,11 @@ li.cursor-hover:active {
     height: 16px;
     margin: 0 4px 4px 0;
   }
+}
+
+/* Override: make skills dots even smaller on mobile */
+@media screen and (max-width: 800px) {
+  #skills .dot { width: 16px; height: 16px; margin: 0 8px 8px 0; }
 }
 
 #my_photo_2 {
