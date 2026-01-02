@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.2/lib/p5.js"></script>
+    <title>My Projects</title>
+    <link rel="stylesheet" href="styles2.css" />
+    <!-- 기존 index.html에서 사용된 스타일시트 -->
+    <!-- 필요에 따라 추가적인 스타일시트 또는 스크립트를 여기에 추가 -->
+    <script src="sketch2.js"></script>
+  </head>
+  <body class="dark">
+    <!-- Header -->
+    <header class="hero-header">
+      <nav class="hero-nav">
+        <!-- Menu Button -->
+        <div class="menu-wrapper">
+          <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div class="dropdown-menu" id="dropdownMenu">
+            <a href="index.html" class="menu-item">HOME</a>
+            <a href="projects.html" class="menu-item active">PROJECTS</a>
+            <a href="about.html" class="menu-item">ABOUT</a>
+          </div>
+        </div>
+
+        <!-- Signature -->
+        <a href="index.html" class="signature">
+          <span class="su">Su</span>'studio
+        </a>
+
+        <!-- Theme Toggle -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <div class="toggle-thumb"></div>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Filters -->
+      <div class="filters" role="tablist" aria-label="Project filters">
+        <button class="filter-btn active" data-filter="all" aria-selected="true">
+          All
+        </button>
+        <button class="filter-btn" data-filter="design">Design</button>
+        <button class="filter-btn" data-filter="dev">Development</button>
+        <button class="filter-btn" data-filter="pd">PD</button>
+      </div>
+
+      <!-- Projects Grid -->
+      <section class="projects-grid" aria-live="polite">
+        <!-- New: Branding project -->
+        <a class="project-card" data-category="design" href="design/branding.html" aria-label="Branding">
+          <img src="img/project/branding/1.png" loading="lazy" alt="Branding 썸네일" class="project-thumb" />
+          <div class="project-meta">
+            <h3 class="project-title">Branding</h3>
+            <div class="project-tags">Design · Identity</div>
+          </div>
+        </a>
+        <!-- New: Logo project -->
+        <a class="project-card" data-category="design" href="design/logo.html" aria-label="Logo">
+          <img src="img/project/logo/1.png" loading="lazy" alt="Logo 썸네일" class="project-thumb" />
+          <div class="project-meta">
+            <h3 class="project-title">Logo</h3>
+            <div class="project-tags">Design · BI/CI</div>
+          </div>
+        </a>
+        <!-- New: Linkus design project -->
+        <a class="project-card" data-category="design" href="design/linkus.html" aria-label="Linkus">
+          <img src="img/project/team/main.png" loading="lazy" alt="Linkus 썸네일" class="project-thumb" />
+          <div class="project-meta">
+            <h3 class="project-title">공모전 팀원 매칭 서비스 「Linkus」</h3>
+            <div class="project-tags">Design · UX</div>
+          </div>
+        </a>
+        <!-- Poster project -->
+        <a class="project-card" data-category="design" href="design/poster.html" aria-label="포스터">
+          <img src="img/project/poster/1.png" loading="lazy" alt="포스터 썸네일" class="project-thumb" />
+          <div class="project-meta">
+            <h3 class="project-title">송년 음악회 포스터</h3>
+            <div class="project-tags">Design · Graphic</div>
+          </div>
+        </a>
+        <a class="project-card" data-category="pd" href="design/pd.html" aria-label="PD Project">
+          <img src="img/project/pd/1.png" loading="lazy" alt="PD project thumbnail" class="project-thumb" />
+          <div class="project-meta">
+            <h3 class="project-title">PD 프로젝트</h3>
+            <div class="project-tags">PD</div>
+          </div>
+        </a>
+        <!-- Dev/WebApp: MA-CC corporate site (detail page) -->
+        <a class="project-card" data-category="dev" data-sub="webapp" href="design/ma-cc.html" aria-label="MA-CC Website">
+          <img src="img/project/macc/1.png" loading="lazy" alt="MA-CC website thumbnail" class="project-thumb" />
+          <div class="project-meta">
+            <h3 class="project-title">Masterpiece Alliance 코칭 & 컨설팅 사이트</h3>
+            <div class="project-tags">Web/App</div>
+          </div>
+        </a>
+        <!-- Dev/WebApp: 2025 Exhibition Archives (detail page) -->
+        <a class="project-card" data-category="dev" data-sub="webapp" href="design/exhibition-2025.html" aria-label="2025 Exhibition Archives">
+          <img src="img/project/smu/1.png" loading="lazy" alt="2025 Exhibition site thumbnail" class="project-thumb" />
+          <div class="project-meta">
+            <h3 class="project-title">2025 상명대학교 온라인 전시 사이트</h3>
+            <div class="project-tags">Web/App</div>
+          </div>
+        </a>
+        <!-- Dev/WebApp: F&B 메뉴 주문 (detail page) -->
+        <a class="project-card" data-category="dev" data-sub="webapp" href="design/fb-order.html" aria-label="F&B 메뉴 주문">
+          <img src="img/project/fb/1.png" loading="lazy" alt="F&B 메뉴 주문 썸네일" class="project-thumb" />
+          <div class="project-meta">
+            <h3 class="project-title">F&B 메뉴 주문</h3>
+            <div class="project-tags">Web/App</div>
+          </div>
+        </a>
+        <!-- Dev/AI: Indicator project -->
+        <a class="project-card" data-category="dev" data-sub="ai" href="design/indicator.html" aria-label="코인 및 주식 인디케이터">
+          <img src="img/project/indicator/1.png" loading="lazy" alt="코인 및 주식 인디케이터 썸네일" class="project-thumb" />
+          <div class="project-meta">
+            <h3 class="project-title">코인 및 주식 인디케이터</h3>
+            <div class="project-tags">AI</div>
+          </div>
+        </a>
+        <!-- Dev/AI: Exchange platform integration -->
+        <a class="project-card" data-category="dev" data-sub="ai" href="design/exchange-platform.html" aria-label="코인 거래소 기능 구현">
+          <img src="img/project/platform/1.png" loading="lazy" alt="코인 거래소 기능 구현 썸네일" class="project-thumb" />
+          <div class="project-meta">
+            <h3 class="project-title">코인 거래소 기능 구현</h3>
+            <div class="project-tags">AI · Fintech</div>
+          </div>
+        </a>
+        <!-- <a class="project-card" data-category="design" href="design/sample-project.html" aria-label="Design Project 2">
+          <img src="img/project/wedding_project/13.png" loading="lazy" alt="Design project thumbnail" class="project-thumb" />
+          <div class="project-meta">
+            <h3 class="project-title">Design Project 2</h3>
+            <div class="project-tags">Design</div>
+          </div>
+        </a> -->
+      </section>
+    </main>
+  </body>
+</html>

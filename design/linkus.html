@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>공모전 팀원 매칭 서비스 — Linkus</title>
+    <link rel="stylesheet" href="../styles2.css" />
+    <link rel="stylesheet" href="../styles-detail.css" />
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.2/lib/p5.js"></script>
+    <script src="../sketch2.js" defer></script>
+  </head>
+  <body class="dark">
+    <!-- Header -->
+    <header class="hero-header">
+      <nav class="hero-nav">
+        <div class="menu-wrapper">
+          <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+            <span></span><span></span><span></span>
+          </button>
+          <div class="dropdown-menu" id="dropdownMenu">
+            <a href="../index.html" class="menu-item">HOME</a>
+            <a href="../projects.html" class="menu-item">PROJECTS</a>
+            <a href="../about.html" class="menu-item">ABOUT</a>
+          </div>
+        </div>
+        <a href="../index.html" class="signature"><span class="su">Su</span>'studio</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <div class="toggle-thumb"></div>
+        </button>
+      </nav>
+    </header>
+
+    <main class="detail">
+      <div class="card project-header simple">
+        <a href="../projects.html" class="back-link back-only" aria-label="Projects로 돌아가기" title="Projects로 돌아가기">←</a>
+        <h1 class="project-title">공모전 팀원 매칭 서비스 「Linkus」</h1>
+      </div>
+
+      <div class="long-layout">
+        <div class="card project-long">
+          <div class="project-long-strip" id="linkusLong"></div>
+        </div>
+        <aside class="long-info">
+          <div class="long-info-sticky">
+            <div class="right-columns">
+              <div class="col">
+                <h3>프로젝트 주제</h3>
+                <p>
+                  공모전에 참여하고 싶은 대학생들이 신뢰할 수 있는 팀원을 손쉽게
+                  매칭할 수 있도록 돕는 서비스 설계.
+                </p>
+                <h3>목표</h3>
+                <p>신뢰 기반의 매칭으로 성공적인 협업 경험을 만든다.</p>
+                <h3>핵심 가치</h3>
+                <p>“열정과 역량이 연결되는 신뢰 기반 커뮤니티”</p>
+              </div>
+              <div class="col">
+                <h3>🎯 문제 인식</h3>
+                <ul>
+                  <li>공모전 참여 시 성실하고 역량 있는 팀원을 구하기 어렵다.</li>
+                  <li>기존 커뮤니티는 공고 중심이라 성향/열정 파악이 어렵다.</li>
+                  <li>일정 관리·마감 확인이 분산되어 비효율적이다.</li>
+                </ul>
+                <h3>💡 핵심 해결 아이디어</h3>
+                <p>
+                  “공모전이 끝나면 팀원의 성실도를 알려주는 열정 온도 기능과
+                  상호보완적 역량을 찾는 태그 기반 매칭으로 신뢰도 높은 협업을 만든다.”
+                </p>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <script>
+      // Long stream for Linkus: load 1..n images from img/project/team
+      (function () {
+        function run() {
+          const container = document.getElementById('linkusLong');
+          if (!container) return;
+
+          // Candidate bases (local + GH Pages)
+          const pathParts = window.location.pathname.split('/').filter(Boolean);
+          const repoSegment = pathParts.length ? '/' + pathParts[0] + '/' : '/';
+          const isPages = /\.github\.io$/.test(window.location.hostname);
+          const bases = [];
+          if (isPages) bases.push(window.location.origin + repoSegment + 'img/project/team/');
+          bases.push(new URL('../img/project/team/', window.location.href).href);
+          bases.push(window.location.origin + '/img/project/team/');
+
+          const max = 83; // number of slides available in team folder
+
+          function loadSeq(i) {
+            const plain = String(i);
+            const p2 = String(i).padStart(2, '0');
+            const p3 = String(i).padStart(3, '0');
+            // Try common patterns including @4x, and optional -1 suffix
+            const names = [
+              plain + '@4x.png', p2 + '@4x.png', p3 + '@4x.png',
+              plain + '@4x-1.png', p2 + '@4x-1.png',
+              plain + '.png', p2 + '.png', p3 + '.png'
+            ];
+            const candidates = [];
+            for (const b of bases) for (const n of names) candidates.push(new URL(n, b).href);
+
+            const img = document.createElement('img');
+            img.alt = 'linkus image ' + i;
+            img.className = 'long-img';
+            img.decoding = 'async';
+            container.appendChild(img);
+
+            (function tryNext() {
+              if (!candidates.length) {
+                try { container.removeChild(img); } catch (e) {}
+                return;
+              }
+              const src = candidates.shift();
+              img.onload = function () {};
+              img.onerror = tryNext;
+              img.src = src + (src.includes('?') ? '&' : '?') + 'v=' + Date.now();
+            })();
+          }
+          for (let i = 1; i <= max; i++) loadSeq(i);
+        }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
+        else run();
+      })();
+    </script>
+
+    <!-- Back to top button -->
+    <button id="backToTop" class="back-to-top" aria-label="맨 위로">↑</button>
+    <script>
+      (function () {
+        const btn = document.getElementById('backToTop');
+        if (!btn) return;
+        const SHOW_AT = 300;
+        function updateVis() { if (window.scrollY > SHOW_AT) btn.classList.add('show'); else btn.classList.remove('show'); }
+        btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', updateVis); else updateVis();
+        window.addEventListener('scroll', updateVis, { passive: true });
+      })();
+    </script>
+
+    <script>
+      // Sidebar offsets (reuse wedding logic): start below header and track header height
+      (function () {
+        const BASE_TOP = 20;
+        const GAP = 12;
+        let ticking = false;
+        function applyOffsets() {
+          const aside = document.querySelector('.long-info');
+          const header = document.querySelector('.project-header');
+          if (!aside) return;
+          if (header) {
+            const headerHeight = Math.round(header.offsetHeight + GAP);
+            aside.style.setProperty('--sidebar-margin-top', headerHeight + 'px');
+          }
+          let top = BASE_TOP;
+          if (header) {
+            const r = header.getBoundingClientRect();
+            if (r.bottom > 0) top = Math.max(BASE_TOP, Math.round(r.bottom + GAP));
+          }
+          aside.style.setProperty('--sidebar-top', top + 'px');
+        }
+        function req() { if (ticking) return; ticking = true; requestAnimationFrame(() => { applyOffsets(); ticking = false; }); }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', applyOffsets); else applyOffsets();
+        window.addEventListener('resize', req); window.addEventListener('scroll', req, { passive: true });
+      })();
+    </script>
+  </body>
+  </html>
+

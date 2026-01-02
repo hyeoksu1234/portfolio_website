@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>웨딩 플랫폼 — 프로젝트 상세</title>
+    <link rel="stylesheet" href="../styles2.css" />
+    <link rel="stylesheet" href="../styles-detail.css" />
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.2/lib/p5.js"></script>
+    <script src="../sketch2.js" defer></script>
+  </head>
+  <body class="dark">
+    <!-- Header -->
+    <header class="hero-header">
+      <nav class="hero-nav">
+        <div class="menu-wrapper">
+          <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+            <span></span><span></span><span></span>
+          </button>
+          <div class="dropdown-menu" id="dropdownMenu">
+            <a href="../index.html" class="menu-item">HOME</a>
+            <a href="../projects.html" class="menu-item">PROJECTS</a>
+            <a href="../about.html" class="menu-item">ABOUT</a>
+          </div>
+        </div>
+        <a href="../index.html" class="signature"><span class="su">Su</span>'studio</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <div class="toggle-thumb"></div>
+        </button>
+      </nav>
+    </header>
+
+    <main class="detail">
+      <div class="card project-header simple">
+        <a href="../projects.html" class="back-link back-only" aria-label="Projects로 돌아가기" title="Projects로 돌아가기">←</a>
+        <h1 class="project-title">웨딩 준비 플랫폼 UX 개선</h1>
+      </div>
+
+
+      <div class="long-layout">
+        <div class="card project-long">
+          <div class="project-long-strip" id="weddingLong"></div>
+        </div>
+        <aside class="long-info">
+          <div class="long-info-sticky">
+            <div class="right-columns">
+              <div class="col">
+                <h3>프로젝트 주제</h3>
+                <p>
+                  예비부부를 위한 투명하고 신뢰도 높은 웨딩 준비 플랫폼 UX 개선.
+                  기존 웨딩 플랫폼(아이웨딩, 웨딩북 등)의 불투명한 정보 구조와 복잡한 견적
+                  비교 과정을 개선하여, 사용자가 직관적이고 신뢰할 수 있는 정보를 기반으로
+                  결혼 준비를 할 수 있도록 하는 것을 목표로 합니다.
+                </p>
+
+                <h3>핵심 UX 목표</h3>
+                <ul>
+                  <li>배우자와 함께 결혼 진척도 및 비용을 한눈에 파악할 수 있는 협업형 UX 제공</li>
+                  <li>사용자 취향 분석을 기반으로 맞춤형 상품과 플래너 추천</li>
+                  <li>정보의 투명성 강화 — 불필요한 중개나 감춰진 견적 정보 제거</li>
+                  <li>결혼 준비 과정 전반의 피로도 감소 및 효율적 일정 관리 실현</li>
+                </ul>
+              </div>
+              <div class="col">
+                <h3>💡 핵심 가설 (UX Hypotheses)</h3>
+                <ul>
+                  <li>결혼 진척도와 비용을 꼼꼼히 확인할 수 있어야 한다.</li>
+                  <li>사용자의 취향을 분석하고 선호할 만한 선택지를 먼저 제공해야 한다.</li>
+                  <li>정보를 투명하게 공개해 신뢰성과 접근성을 높여야 한다.</li>
+                </ul>
+
+                <h3>정보</h3>
+                <ul>
+                  <li>역할: UX 기획</li>
+                  <li>도구: Figma, Illustrator, Photoshop</li>
+                  <li>산출물: 사용자 여정/플로우, 와이어프레임</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+  </main>
+    <script>
+      // Long stream: load 01.png..138.png as full-width images
+      (function runner() {
+        function run() {
+          const container = document.getElementById('weddingLong');
+          if (!container) {
+            console.warn('[weddingLong] Container not found');
+            return;
+          }
+          // Robust base path resolution for GitHub Pages project sites and local
+          const pathParts = window.location.pathname.split('/').filter(Boolean);
+          const repoSegment = pathParts.length ? '/' + pathParts[0] + '/' : '/';
+          const isGitHubPages = /\.github\.io$/.test(window.location.hostname);
+          const candidateBases = [];
+          if (isGitHubPages) {
+            candidateBases.push(window.location.origin + repoSegment + 'img/project/wedding_project/');
+          }
+          // Relative to current page
+          candidateBases.push(new URL('../img/project/wedding_project/', window.location.href).href);
+          // Absolute from server root
+          candidateBases.push(window.location.origin + '/img/project/wedding_project/');
+
+          window.__weddingLongBases = candidateBases.slice();
+          console.info('[weddingLong] start', {
+            origin: window.location.origin,
+            pathname: window.location.pathname,
+            bases: candidateBases,
+          });
+
+          const max = 139; // adjust if needed
+          let loadedCount = 0;
+          container.style.minHeight = '10px';
+
+          // Detect a working base first to avoid spamming 404s locally
+          function detectBase(bases, cb) {
+            const tryFiles = ['1.png', '01.png', '001.png'];
+            let bi = 0, fi = 0;
+            function next() {
+              if (bi >= bases.length) return cb(null);
+              const testSrc = new URL(tryFiles[fi], bases[bi]).href + '?probe=' + Date.now();
+              const img = new Image();
+              img.onload = () => cb(bases[bi]);
+              img.onerror = () => {
+                fi++;
+                if (fi >= tryFiles.length) { bi++; fi = 0; }
+                next();
+              };
+              img.src = testSrc;
+            }
+            next();
+          }
+          function loadSeq(i, chosenBase) {
+            const plain = String(i);
+            const p2 = String(i).padStart(2, '0');
+            const p3 = String(i).padStart(3, '0');
+            const files = [p2 + '.png', plain + '.png', p3 + '.png', p2 + '.PNG', plain + '.PNG', p3 + '.PNG'];
+            const bases = chosenBase ? [chosenBase] : candidateBases;
+            const candidates = [];
+            for (const base of bases) {
+              for (const f of files) candidates.push(new URL(f, base).href);
+            }
+
+            // Append element first so browser/network shows attempts immediately
+            const img = document.createElement('img');
+            img.alt = 'wedding main image ' + i;
+            img.className = 'long-img';
+            img.decoding = 'async';
+            container.appendChild(img);
+
+            (function tryNext() {
+              if (!candidates.length) {
+                if (window.console && console.debug) console.debug('[weddingLong] no file for index', i);
+                // Remove placeholder if nothing matched
+                try { container.removeChild(img); } catch (_) {}
+                return; // none found; skip number
+              }
+              const src = candidates.shift();
+              img.onload = function () {
+                loadedCount++;
+                window.__weddingLongLoaded = loadedCount;
+              };
+              img.onerror = function () {
+                if (window.console && console.debug) console.debug('[weddingLong] missing', src);
+                // Try next candidate into the same element
+                tryNext();
+              };
+              // cache-bust to avoid stale CDN on first deploys
+              img.src = src + (src.includes('?') ? '&' : '?') + 'v=' + Date.now();
+            })();
+          }
+          // First detect a working base, then load sequence using that base for speed
+          detectBase(candidateBases, function (base) {
+            window.__weddingLongChosenBase = base;
+            if (base) console.info('[weddingLong] chosen base:', base);
+            for (let i = 1; i <= max; i++) loadSeq(i, base || undefined);
+          });
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', run);
+        } else {
+          run();
+        }
+      })();
+    </script>
+    <script>
+      // Sidebar: start below the header and follow scroll smoothly
+      (function () {
+        const BASE_TOP = 20;   // when header is off-screen
+        const GAP = 12;        // spacing below header
+        let ticking = false;
+
+        function applyOffsets() {
+          const aside = document.querySelector('.long-info');
+          const header = document.querySelector('.project-header');
+          if (!aside) return;
+
+          // Initial placement: give aside margin so it starts below header
+          if (header) {
+            const headerHeight = Math.round(header.offsetHeight + GAP);
+            aside.style.setProperty('--sidebar-margin-top', headerHeight + 'px');
+          }
+
+          // Sticky top: while header is visible, keep sidebar below it; else use base top
+          let top = BASE_TOP;
+          if (header) {
+            const r = header.getBoundingClientRect();
+            if (r.bottom > 0) top = Math.max(BASE_TOP, Math.round(r.bottom + GAP));
+          }
+          aside.style.setProperty('--sidebar-top', top + 'px');
+        }
+
+        function req() {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(() => { applyOffsets(); ticking = false; });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', applyOffsets);
+        } else {
+          applyOffsets();
+        }
+        window.addEventListener('resize', req);
+        window.addEventListener('scroll', req, { passive: true });
+      })();
+    </script>
+    <!-- Back to top button -->
+    <button id="backToTop" class="back-to-top" aria-label="맨 위로">↑</button>
+    <script>
+      // Back-to-top: show after scrolling down a bit; smooth scroll to top
+      (function () {
+        const btn = document.getElementById('backToTop');
+        if (!btn) return;
+        const SHOW_AT = 300; // px
+        function updateVis() {
+          if (window.scrollY > SHOW_AT) btn.classList.add('show');
+          else btn.classList.remove('show');
+        }
+        btn.addEventListener('click', function () {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', updateVis);
+        } else {
+          updateVis();
+        }
+        window.addEventListener('scroll', updateVis, { passive: true });
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Logo — Design Project</title>
+    <link rel="stylesheet" href="../styles2.css" />
+    <link rel="stylesheet" href="../styles-detail.css" />
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.2/lib/p5.js"></script>
+    <script src="../sketch2.js" defer></script>
+  </head>
+  <body class="dark">
+    <!-- Header -->
+    <header class="hero-header">
+      <nav class="hero-nav">
+        <div class="menu-wrapper">
+          <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+            <span></span><span></span><span></span>
+          </button>
+          <div class="dropdown-menu" id="dropdownMenu">
+            <a href="../index.html" class="menu-item">HOME</a>
+            <a href="../projects.html" class="menu-item">PROJECTS</a>
+            <a href="../about.html" class="menu-item">ABOUT</a>
+          </div>
+        </div>
+        <a href="../index.html" class="signature"><span class="su">Su</span>'studio</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <div class="toggle-thumb"></div>
+        </button>
+      </nav>
+    </header>
+
+    <main class="detail">
+      <div class="card project-header simple">
+        <a href="../projects.html" class="back-link back-only" aria-label="Projects로 돌아가기">←</a>
+        <h1 class="project-title">Logo</h1>
+      </div>
+
+      <div class="long-layout">
+        <div class="card project-long">
+          <div class="project-long-strip" id="logoLong"></div>
+        </div>
+        <aside class="long-info">
+          <div class="long-info-sticky">
+            <div class="right-columns">
+              <div class="col">
+                <h3>프로젝트 주제</h3>
+                <p>
+                  브랜드의 핵심 가치와 상징을 형상화한 로고 디자인 프로젝트. 각 로고는
+                  브랜드명과 키워드를 기반으로 조형적 언어를 구성하여, 직관적이면서도
+                  현대적인 인상을 전달하는 시각 아이덴티티로 완성되었습니다.
+                </p>
+                <!-- <hr /> -->
+                <h3>Rio</h3>
+                <p>
+                  “물과 순환의 상징” — Rio의 이니셜과 물방울 형태를 결합하여 산업 폐수 관리의
+                  투명함과 친환경성을 시각적으로 표현. 메인 컬러는 블루(물), 서브는 그린(자연)
+                  계열을 사용하여 환경 기술 기업의 청결함과 지속가능성을 강조.
+                  <br />키워드: Clean · Flow · Sustainable · Modern
+                </p>
+                <h3>チルい Dining</h3>
+                <p>
+                  “느긋하고 따뜻한 일상의 식사” — ‘치루이(チルい)’와 ‘Dining’의 g를 조합하여
+                  일본 가정식의 밥그릇을 그래픽 모티프로 디자인. 따뜻한 Yellow + Green 톤으로
+                  여유롭고 감성적인 브랜드 이미지 구현.
+                  <br />키워드: Cozy · Calm · Emotional · Minimal
+                </p>
+              
+              <!-- <div class="col"> -->
+                <h3>WESYS</h3>
+                <p>
+                  “성공을 향한 지원과 상승의 이미지” — “We Support Your Success”의 W를 독수리의
+                  날개와 두 손의 형상으로 조합하여 신뢰·파트너십·성장을 상징적으로 표현.
+                  전체적으로 고급스럽고 안정적인 기업형 디자인을 유지.
+                  <br />키워드: Trust · Support · Growth · Premium
+                </p>
+                <h3>본튼튼병원</h3>
+                <p>
+                  “균형과 회복의 상징” — ‘Bone(뼈)’의 B와 한글 ‘튼튼’의 ㅌ을 결합하여 척추 뼈의
+                  형태를 단순화. 의료 전문성과 가족 중심의 따뜻한 인상을 동시에 담아 직관적이면서
+                  모던한 메디컬 BI로 완성.
+                  <br />키워드: Balance · Healing · Growth · Trust
+                </p>
+                <!-- <hr /> -->
+                <h3>정보</h3>
+                <ul>
+                  <li>작업 내용: BI/CI 로고 디자인, 조형 아이디어 개발, 컬러 시스템 설계</li>
+                  <li>작업 범위: 브랜드 분석 → 그래픽 모티브 도출 → 로고 디자인 → 가이드 제작</li>
+                  <li>사용 도구: Adobe Illustrator, Figma</li>
+                  <li>디자인 방향: Modern · Simple · Symbolic · Consistent</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <script>
+      // Load exactly 23 PNGs (1..23) from img/project/logo with robust path matching
+      (function () {
+        function run() {
+          const container = document.getElementById('logoLong');
+          if (!container) return;
+          const pathParts = window.location.pathname.split('/').filter(Boolean);
+          const repoSegment = pathParts.length ? '/' + pathParts[0] + '/' : '/';
+          const isPages = /\.github\.io$/.test(window.location.hostname);
+          const bases = [];
+          if (isPages) bases.push(window.location.origin + repoSegment + 'img/project/logo/');
+          bases.push(new URL('../img/project/logo/', window.location.href).href);
+          bases.push(window.location.origin + '/img/project/logo/');
+
+          const max = 23; // total images
+
+          function loadSeq(i) {
+            const s = String(i);
+            const p2 = s.padStart(2, '0');
+            const p3 = s.padStart(3, '0');
+            const names = [s + '.png', p2 + '.png', p3 + '.png'];
+            const candidates = [];
+            for (const b of bases) for (const n of names) candidates.push(new URL(n, b).href);
+
+            const img = document.createElement('img');
+            img.className = 'long-img';
+            img.alt = 'logo image ' + i;
+            img.decoding = 'async';
+            container.appendChild(img);
+
+            (function tryNext() {
+              if (!candidates.length) { try { container.removeChild(img); } catch (_) {} return; }
+              const src = candidates.shift();
+              img.onerror = tryNext;
+              img.onload = function () {};
+              img.src = src + (src.includes('?') ? '&' : '?') + 'v=' + Date.now();
+            })();
+          }
+          for (let i = 1; i <= max; i++) loadSeq(i);
+        }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
+      })();
+    </script>
+
+    <button id="backToTop" class="back-to-top" aria-label="맨 위로">↑</button>
+    <script>
+      (function () {
+        const btn = document.getElementById('backToTop');
+        if (!btn) return;
+        const SHOW_AT = 300; function upd(){ if (window.scrollY>SHOW_AT) btn.classList.add('show'); else btn.classList.remove('show'); }
+        btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', upd); else upd();
+        window.addEventListener('scroll', upd, { passive:true });
+      })();
+    </script>
+
+    <script>
+      // Sidebar offsets
+      (function(){
+        const BASE_TOP=20, GAP=12; let ticking=false;
+        function apply(){
+          const aside=document.querySelector('.long-info'); const header=document.querySelector('.project-header'); if(!aside) return;
+          if(header){ aside.style.setProperty('--sidebar-margin-top', Math.round(header.offsetHeight+GAP)+'px'); }
+          let top=BASE_TOP; if(header){ const r=header.getBoundingClientRect(); if(r.bottom>0) top=Math.max(BASE_TOP, Math.round(r.bottom+GAP)); }
+          aside.style.setProperty('--sidebar-top', top+'px');
+        }
+        function req(){ if(ticking) return; ticking=true; requestAnimationFrame(()=>{apply(); ticking=false;}); }
+        if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', apply); else apply();
+        window.addEventListener('resize', req); window.addEventListener('scroll', req, {passive:true});
+      })();
+    </script>
+  </body>
+  </html>

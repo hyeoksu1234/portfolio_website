@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About — Su'studio</title>
+    <link rel="stylesheet" href="styles2.css" />
+    <link rel="stylesheet" href="styles-detail.css" />
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.2/lib/p5.js"></script>
+    <script src="sketch2.js" defer></script>
+  </head>
+  <body class="dark">
+    <!-- Header -->
+    <header class="hero-header">
+      <nav class="hero-nav">
+        <!-- Menu Button -->
+        <div class="menu-wrapper">
+          <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div class="dropdown-menu" id="dropdownMenu">
+            <a href="index.html" class="menu-item">HOME</a>
+            <a href="projects.html" class="menu-item">PROJECTS</a>
+            <a href="about.html" class="menu-item active">ABOUT</a>
+          </div>
+        </div>
+
+        <!-- Signature -->
+        <a href="index.html" class="signature">
+          <span class="su">Su</span>'studio
+        </a>
+
+        <!-- Theme Toggle -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <div class="toggle-thumb"></div>
+        </button>
+      </nav>
+    </header>
+
+    <main class="detail">
+      <div class="long-layout single">
+        <div class="card project-long">
+          <div class="project-long-strip">
+            <img src="img/my_photo/1.png" alt="Profile" class="long-img" />
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <button id="backToTop" class="back-to-top" aria-label="맨 위로">↑</button>
+    <script>
+      (function(){ const btn=document.getElementById('backToTop'); if(!btn) return; const S=300; function u(){ if(window.scrollY>S) btn.classList.add('show'); else btn.classList.remove('show'); } btn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'})); if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',u); else u(); window.addEventListener('scroll',u,{passive:true});})();
+    </script>
+  </body>
+  </html>

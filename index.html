@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:type" content="hyeoksu_portfolio_website" />
+    <meta property="og:url" content="https://hyeoksu1234.github.io/portfolio_website/" />
+    <meta property="og:title" content="hyeoksu_portfolio" />
+    <meta property="og:description" content="hyeoksu_portfolio_website" />
+    <meta property="og:image" content="https://hyeoksu1234.github.io/portfolio_website/img/my_photo/projects.jpg" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@700&family=Noto+Sans+KR:wght@400;700&display=swap" />
+    <title>Su'studio | Portfolio</title>
+    <link rel="stylesheet" href="styles.css?v=6" />
+    <style>
+      /* Inline critical styles for immediate rendering */
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { background: #000; color: #fff; font-family: 'Noto Sans KR', sans-serif; overflow-x: hidden; }
+      .hero-header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; padding: 1.5rem; }
+      .hero-nav { display: flex; align-items: center; justify-content: space-between; max-width: 1536px; margin: 0 auto; }
+      .menu-wrapper { position: relative; }
+      .menu-btn { display: flex; flex-direction: column; justify-content: space-between; width: 32px; height: 24px; background: transparent; border: none; cursor: pointer; }
+      .menu-btn span { display: block; width: 100%; height: 3px; background-color: #737373; }
+      .dropdown-menu { display: none; position: absolute; top: calc(100% + 0.5rem); left: 0; width: 200px; background: #000; border-radius: 12px; padding: 1rem; }
+      .dropdown-menu.open { display: block; }
+      .menu-item { display: block; padding: 0.5rem; font-size: 1.125rem; font-weight: 700; text-decoration: none; color: #fff; }
+      .menu-item:hover, .menu-item.active { color: #C3E41D; }
+      .signature { font-size: 1.75rem; font-weight: 700; text-decoration: none; color: #fff; transition: color 0.3s; }
+      body.light .signature { color: #1a1a1a; }
+      body.light { background: #fafafa; color: #1a1a1a; }
+      body.light .theme-toggle { background: rgba(0,0,0,0.1); }
+      body.light .toggle-thumb { background: #1a1a1a; transform: translateX(0); }
+      body.light .dropdown-menu { background: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+      body.light .menu-item { color: #1a1a1a; }
+      .signature .su { color: #737373; }
+      .theme-toggle { position: relative; width: 64px; height: 32px; background: rgba(255,255,255,0.15); border: none; border-radius: 16px; cursor: pointer; }
+      .toggle-thumb { position: absolute; top: 4px; left: 4px; width: 24px; height: 24px; background: #fff; border-radius: 50%; transform: translateX(32px); }
+      .hero-main { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+      .hero-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; padding: 0 1rem; }
+      .name-container { position: relative; text-align: center; }
+      .blur-text { display: flex; justify-content: center; font-family: 'Fira Code', monospace; font-size: clamp(80px, 18vw, 210px); font-weight: 700; line-height: 0.85; letter-spacing: -0.05em; color: #C3E41D; }
+      @media (max-width: 639px) { .blur-text { font-size: 28vw; } }
+      .profile-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; width: 70px; height: 120px; }
+      .profile-img { width: 100%; height: 100%; object-fit: cover; border-radius: 9999px; }
+      @media (min-width: 640px) { .profile-overlay { width: 100px; height: 170px; } }
+      .tagline-container { position: absolute; bottom: 8rem; left: 50%; transform: translateX(-50%); width: 100%; padding: 0 1.5rem; text-align: center; }
+      .tagline { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.3em; font-size: clamp(14px, 2.5vw, 22px); color: #737373; }
+      .scroll-indicator { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); background: transparent; border: none; color: #737373; cursor: pointer; }
+      .content-sections { padding: 2rem 1rem; max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem; }
+      .info-row { display: flex; flex-direction: column; gap: 1.5rem; }
+      @media (min-width: 768px) { .info-row { flex-direction: row; gap: 2rem; } .info-row .content-card { flex: 1; } }
+    </style>
+  </head>
+  <body class="dark">
+    <!-- Header -->
+    <header class="hero-header">
+      <nav class="hero-nav">
+        <!-- Menu Button -->
+        <div class="menu-wrapper">
+          <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div class="dropdown-menu" id="dropdownMenu">
+            <a href="index.html" class="menu-item active">HOME</a>
+            <a href="projects.html" class="menu-item">PROJECTS</a>
+            <a href="about.html" class="menu-item">ABOUT</a>
+          </div>
+        </div>
+
+        <!-- Signature -->
+        <a href="index.html" class="signature">
+          <span class="su">Su</span>'studio
+        </a>
+
+        <!-- Theme Toggle -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <div class="toggle-thumb"></div>
+        </button>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="hero-main">
+      <!-- Centered Name -->
+      <div class="hero-center">
+        <div class="name-container">
+          <div class="blur-text" data-text="HYEOK" data-delay="100">
+            <span>H</span><span>Y</span><span>E</span><span>O</span><span>K</span>
+          </div>
+          <div class="blur-text" data-text="SU" data-delay="100">
+            <span>S</span><span>U</span>
+          </div>
+
+          <!-- Profile Picture Overlay -->
+          <div class="profile-overlay">
+            <img src="img/my_photo/hyeoksu.jpg" alt="Profile" class="profile-img" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Tagline -->
+      <div class="tagline-container">
+        <p class="tagline blur-text-words" data-delay="150">
+          <span>UX</span> <span>Writer</span> <span>·</span> <span>Brand</span> <span>Experience</span> <span>Designer</span> <span>·</span> <span>Interactive</span> <span>Developer</span>
+        </p>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <button class="scroll-indicator" id="scrollIndicator" aria-label="Scroll down">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 9l6 6 6-6"/>
+        </svg>
+      </button>
+    </main>
+
+    <!-- Content Sections (scrollable below hero) -->
+    <div class="content-sections">
+      <!-- Projects Preview - Full Width -->
+      <section class="content-card projects-preview" id="projectsPreview" onclick="window.location.href='projects.html'">
+        <img src="img/my_photo/projects.jpg" alt="Projects" class="projects-img" />
+      </section>
+
+      <!-- Skills & Strengths Row -->
+      <div class="info-row">
+        <!-- Skills Section -->
+        <section class="content-card" id="skillsSection">
+          <h2 class="section-title">Skills</h2>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <span class="skill-name">Photoshop</span>
+              <div class="skill-bar"><div class="skill-fill" style="width: 100%"></div></div>
+            </div>
+            <div class="skill-item">
+              <span class="skill-name">Illustrator</span>
+              <div class="skill-bar"><div class="skill-fill" style="width: 100%"></div></div>
+            </div>
+            <div class="skill-item">
+              <span class="skill-name">Premiere Pro</span>
+              <div class="skill-bar"><div class="skill-fill" style="width: 100%"></div></div>
+            </div>
+            <div class="skill-item">
+              <span class="skill-name">After Effects</span>
+              <div class="skill-bar"><div class="skill-fill" style="width: 90%"></div></div>
+            </div>
+            <div class="skill-item">
+              <span class="skill-name">AI</span>
+              <div class="skill-bar"><div class="skill-fill" style="width: 90%"></div></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Strengths Section -->
+        <section class="content-card" id="strengthsSection">
+          <h2 class="section-title">Strengths</h2>
+          <div class="strengths-list">
+            <div class="strength-item" style="--bg: #ffe4b5;">
+              <span>1. 사교성 테마 (Woo)</span>
+            </div>
+            <div class="strength-item" style="--bg: #e6e6fa;">
+              <span>2. 성취 테마 (Achiever)</span>
+            </div>
+            <div class="strength-item" style="--bg: #c8f7c3;">
+              <span>3. 미래지향 테마 (Futuristic)</span>
+            </div>
+            <div class="strength-item" style="--bg: #ffe4b5;">
+              <span>4. 커뮤니케이션 테마 (Communication)</span>
+            </div>
+            <div class="strength-item" style="--bg: #e6e6fa;">
+              <span>5. 정리 테마 (Arranger)</span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="sketch.js"></script>
+  </body>
+</html>
