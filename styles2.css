@@ -236,7 +236,7 @@ body.light h2 {
 
 body {
   background: #000;
-  font-family: sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   /* Allow vertical scrolling for long detail pages */
   overflow-x: hidden;
   overflow-y: auto;

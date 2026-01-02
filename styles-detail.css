@@ -283,6 +283,13 @@ main.detail {
   margin-right: 12px;
   margin-bottom: 10px;
 }
+.long-info a {
+  color: #fff;
+  text-decoration: none;
+}
+.long-info a:hover {
+  text-decoration: underline;
+}
 .long-info ul { padding-left: 18px; margin: 10px 0 14px; }
 .long-info li { margin-bottom: 8px; }
 .long-info .col + .col { margin-top: 16px; }
@@ -385,9 +392,292 @@ body.light .back-to-top {
 }
 
 body.light .long-info a {
-  color: #0066cc;
+  color: #1a1a1a;
 }
 
 body.light .long-info a:hover {
-  color: #004499;
+  color: #1a1a1a;
+  text-decoration: underline;
+}
+
+/* ========== Resume Section Styles ========== */
+.resume-section {
+  margin-top: 24px;
+  padding: 0 12px;
+}
+
+.resume-container {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 30px;
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Intro */
+.resume-intro {
+  text-align: center;
+  margin-bottom: 48px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.resume-intro h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 24px;
+  line-height: 1.4;
+  color: #fff;
+}
+
+.intro-details p {
+  margin: 8px 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Resume Content Layout */
+.resume-content {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 48px;
+}
+
+.resume-block {
+  margin-bottom: 32px;
+}
+
+.resume-block h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #f5a623;
+  margin: 0 0 16px;
+  letter-spacing: 1px;
+}
+
+/* Education Items */
+.resume-item {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 12px;
+  align-items: baseline;
+}
+
+.resume-item .date {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  min-width: 100px;
+  flex-shrink: 0;
+}
+
+.resume-item .desc {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Project Items */
+.resume-project {
+  margin-bottom: 24px;
+}
+
+.project-header-row {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 8px;
+  align-items: baseline;
+}
+
+.project-header-row .date {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  min-width: 130px;
+  flex-shrink: 0;
+}
+
+.project-header-row .title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.project-subtitle {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 8px 154px;
+}
+
+.resume-project ul {
+  margin: 0;
+  padding-left: 154px;
+  list-style: none;
+}
+
+.resume-project li {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 6px;
+  position: relative;
+  padding-left: 12px;
+}
+
+.resume-project li::before {
+  content: "-";
+  position: absolute;
+  left: 0;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.resume-project li strong {
+  color: #f5a623;
+}
+
+/* Skills */
+.skill-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.skill-name {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.skill-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.skill-dots .dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #f5a623;
+}
+
+.skill-dots .dot.filled {
+  background-color: #f5a623;
+}
+
+.skill-dots .dot.empty {
+  background-color: transparent;
+}
+
+/* Who Section */
+.who-item {
+  display: flex;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.who-label {
+  color: rgba(255, 255, 255, 0.6);
+  min-width: 80px;
+}
+
+.who-value {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.who-value a {
+  color: #f5a623;
+  text-decoration: none;
+}
+
+.who-value a:hover {
+  text-decoration: underline;
+}
+
+/* Light Mode */
+body.light .resume-container {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+body.light .resume-intro {
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+body.light .resume-intro h1 {
+  color: #1a1a1a;
+}
+
+body.light .intro-details p {
+  color: rgba(0, 0, 0, 0.75);
+}
+
+body.light .resume-item .date,
+body.light .project-header-row .date {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+body.light .resume-item .desc,
+body.light .skill-name,
+body.light .who-value {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+body.light .project-header-row .title {
+  color: #1a1a1a;
+}
+
+body.light .project-subtitle {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+body.light .resume-project li {
+  color: rgba(0, 0, 0, 0.75);
+}
+
+body.light .resume-project li::before {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+body.light .who-label {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 800px) {
+  .resume-container {
+    padding: 24px 16px;
+  }
+
+  .resume-intro h1 {
+    font-size: 22px;
+  }
+
+  .intro-details p {
+    font-size: 13px;
+  }
+
+  .resume-content {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .resume-item {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .project-header-row {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .project-subtitle {
+    margin-left: 0;
+  }
+
+  .resume-project ul {
+    padding-left: 16px;
+  }
+
+  .skill-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
 }
