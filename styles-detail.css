@@ -435,6 +435,7 @@ body.light .long-info a:hover {
   font-size: 14px;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.85);
+  word-break: keep-all;
 }
 
 /* Resume Content Layout */

@@ -762,11 +762,11 @@ h2 {
     max-width: calc(50% - 6px);
   }
 
-  /* Single card in category should be wider */
+  /* Single card in category should stay half width */
   .category-grid .project-card:only-child {
-    flex: 0 1 100%;
-    min-width: 100%;
-    max-width: 100%;
+    flex: 0 1 calc(50% - 6px);
+    min-width: calc(50% - 6px);
+    max-width: calc(50% - 6px);
   }
 
   .project-thumb {
